@@ -8,6 +8,18 @@ public final class Point
         this.y = y;
     }
 
+    public boolean adjacent(Point p) {
+        return (x == p.x && Math.abs(y - p.y) == 1) || (y == p.y
+                && Math.abs(x - p.x) == 1);
+    }
+
+    public int distanceSquared(Point p) {
+        int deltaX = x - p.x;
+        int deltaY = y - p.y;
+
+        return deltaX * deltaX + deltaY * deltaY;
+    }
+
     public String toString() {
         return "(" + x + "," + y + ")";
     }

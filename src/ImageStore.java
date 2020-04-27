@@ -15,4 +15,23 @@ public final class ImageStore
         defaultImages = new LinkedList<>();
         defaultImages.add(defaultImage);
     }
+
+    public static PImage getCurrentImage(Object entity) {
+        if (entity instanceof Background) {
+            return ((Background)entity).images.get(
+                    ((Background)entity).imageIndex);
+        }
+        else if (entity instanceof Entity) {
+            return ((Entity)entity).images.get(((Entity)entity).imageIndex);
+        }
+        else {
+            throw new UnsupportedOperationException(
+                    String.format("getCurrentImage not supported for %s",
+                                  entity));
+        }
+    }
+
+    public List<PImage> getImageList(String key) {
+        return images.getOrDefault(key, defaultImages);
+    }
 }
