@@ -215,7 +215,7 @@ public final class Functions
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
                               createAnimationAction(entity, 0),
-                              Entity.getAnimationPeriod(entity));
+                              entity.getAnimationPeriod());
                 break;
 
             case MINER_NOT_FULL:
@@ -224,7 +224,7 @@ public final class Functions
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
                               createAnimationAction(entity, 0),
-                              Entity.getAnimationPeriod(entity));
+                              entity.getAnimationPeriod());
                 break;
 
             case ORE:
@@ -239,7 +239,7 @@ public final class Functions
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
                               createAnimationAction(entity, 0),
-                              Entity.getAnimationPeriod(entity));
+                              entity.getAnimationPeriod());
                 break;
 
             case QUAKE:
@@ -248,7 +248,7 @@ public final class Functions
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity, createAnimationAction(entity,
                                                                        QUAKE_ANIMATION_REPEAT_COUNT),
-                              Entity.getAnimationPeriod(entity));
+                              entity.getAnimationPeriod());
                 break;
 
             case VEIN:

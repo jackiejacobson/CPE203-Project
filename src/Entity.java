@@ -36,17 +36,17 @@ public final class Entity
     }
 
 
-    public static int getAnimationPeriod(Entity entity) {
-        switch (entity.kind) {
+    public int getAnimationPeriod() {
+        switch (kind) {
             case MINER_FULL:
             case MINER_NOT_FULL:
             case ORE_BLOB:
             case QUAKE:
-                return entity.animationPeriod;
+                return animationPeriod;
             default:
                 throw new UnsupportedOperationException(
                         String.format("getAnimationPeriod not supported for %s",
-                                      entity.kind));
+                                      kind));
         }
     }
 

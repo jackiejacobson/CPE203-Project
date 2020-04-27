@@ -1,10 +1,10 @@
 public final class Action
 {
-    public ActionKind kind;
-    public Entity entity;
-    public WorldModel world;
-    public ImageStore imageStore;
-    public int repeatCount;
+    private ActionKind kind;
+    private Entity entity;
+    private WorldModel world;
+    private ImageStore imageStore;
+    private int repeatCount;
 
     public Action(
             ActionKind kind,
@@ -42,7 +42,7 @@ public final class Action
                           Functions.createAnimationAction(entity,
                                                 Math.max(repeatCount - 1,
                                                          0)),
-                          Entity.getAnimationPeriod(entity));
+                          entity.getAnimationPeriod());
         }
     }
 
