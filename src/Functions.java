@@ -33,35 +33,35 @@ public final class Functions
     private static final int BGND_COL = 2;
     private static final int BGND_ROW = 3;
 
-    public static final String MINER_KEY = "miner";
-    public static final int MINER_NUM_PROPERTIES = 7;
-    public static final int MINER_ID = 1;
-    public static final int MINER_COL = 2;
-    public static final int MINER_ROW = 3;
-    public static final int MINER_LIMIT = 4;
-    public static final int MINER_ACTION_PERIOD = 5;
-    public static final int MINER_ANIMATION_PERIOD = 6;
+    private static final String MINER_KEY = "miner";
+    private static final int MINER_NUM_PROPERTIES = 7;
+    private static final int MINER_ID = 1;
+    private static final int MINER_COL = 2;
+    private static final int MINER_ROW = 3;
+    private static final int MINER_LIMIT = 4;
+    private static final int MINER_ACTION_PERIOD = 5;
+    private static final int MINER_ANIMATION_PERIOD = 6;
 
-    public static final String OBSTACLE_KEY = "obstacle";
-    public static final int OBSTACLE_NUM_PROPERTIES = 4;
-    public static final int OBSTACLE_ID = 1;
-    public static final int OBSTACLE_COL = 2;
-    public static final int OBSTACLE_ROW = 3;
+    private static final String OBSTACLE_KEY = "obstacle";
+    private static final int OBSTACLE_NUM_PROPERTIES = 4;
+    private static final int OBSTACLE_ID = 1;
+    private static final int OBSTACLE_COL = 2;
+    private static final int OBSTACLE_ROW = 3;
 
-    public static final int ORE_NUM_PROPERTIES = 5;
-    public static final int ORE_ID = 1;
-    public static final int ORE_COL = 2;
-    public static final int ORE_ROW = 3;
-    public static final int ORE_ACTION_PERIOD = 4;
+    private static final int ORE_NUM_PROPERTIES = 5;
+    private static final int ORE_ID = 1;
+    private static final int ORE_COL = 2;
+    private static final int ORE_ROW = 3;
+    private static final int ORE_ACTION_PERIOD = 4;
 
-    public static final String SMITH_KEY = "blacksmith";
-    public static final int SMITH_NUM_PROPERTIES = 4;
-    public static final int SMITH_ID = 1;
-    public static final int SMITH_COL = 2;
-    public static final int SMITH_ROW = 3;
+    private static final String SMITH_KEY = "blacksmith";
+    private static final int SMITH_NUM_PROPERTIES = 4;
+    private static final int SMITH_ID = 1;
+    private static final int SMITH_COL = 2;
+    private static final int SMITH_ROW = 3;
 
-    public static final String VEIN_KEY = "vein";
-    public static int QUAKE_ANIMATION_PERIOD = 100;
+    private static final String VEIN_KEY = "vein";
+    private static int QUAKE_ANIMATION_PERIOD = 100;
 
 
     public static void loadImages(
@@ -81,7 +81,7 @@ public final class Functions
         }
     }
 
-    public static void processImageLine(
+    private static void processImageLine(
             Map<String, List<PImage>> images, String line, PApplet screen)
     {
         String[] attrs = line.split("\\s");
@@ -103,7 +103,7 @@ public final class Functions
         }
     }
 
-    public static List<PImage> getImages(
+    private static List<PImage> getImages(
             Map<String, List<PImage>> images, String key)
     {
         List<PImage> imgs = images.get(key);
@@ -118,7 +118,7 @@ public final class Functions
       Called with color for which alpha should be set and alpha value.
       setAlpha(img, color(255, 255, 255), 0));
     */
-    public static void setAlpha(PImage img, int maskColor, int alpha) {
+    private static void setAlpha(PImage img, int maskColor, int alpha) {
         int alphaValue = alpha << 24;
         int nonAlpha = maskColor & COLOR_MASK;
         img.format = PApplet.ARGB;
@@ -155,7 +155,7 @@ public final class Functions
         }
     }
 
-    public static boolean processLine(
+    private static boolean processLine(
             String line, WorldModel world, ImageStore imageStore)
     {
         String[] properties = line.split("\\s");
@@ -179,7 +179,7 @@ public final class Functions
         return false;
     }
 
-    public static boolean parseBackground(
+    private static boolean parseBackground(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == BGND_NUM_PROPERTIES) {
@@ -193,7 +193,7 @@ public final class Functions
         return properties.length == BGND_NUM_PROPERTIES;
     }
 
-    public static boolean parseMiner(
+    private static boolean parseMiner(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == MINER_NUM_PROPERTIES) {
@@ -213,7 +213,7 @@ public final class Functions
         return properties.length == MINER_NUM_PROPERTIES;
     }
 
-    public static boolean parseObstacle(
+    private static boolean parseObstacle(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == OBSTACLE_NUM_PROPERTIES) {
@@ -227,7 +227,7 @@ public final class Functions
         return properties.length == OBSTACLE_NUM_PROPERTIES;
     }
 
-    public static boolean parseOre(
+    private static boolean parseOre(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == ORE_NUM_PROPERTIES) {
@@ -242,7 +242,7 @@ public final class Functions
         return properties.length == ORE_NUM_PROPERTIES;
     }
 
-    public static boolean parseSmith(
+    private static boolean parseSmith(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == SMITH_NUM_PROPERTIES) {
@@ -257,7 +257,7 @@ public final class Functions
         return properties.length == SMITH_NUM_PROPERTIES;
     }
 
-    public static boolean parseVein(
+    private static boolean parseVein(
             String[] properties, WorldModel world, ImageStore imageStore)
     {
         if (properties.length == VEIN_NUM_PROPERTIES) {
@@ -284,7 +284,7 @@ public final class Functions
         return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
     }
 
-    public static Entity createBlacksmith(
+    private static Entity createBlacksmith(
             String id, Point position, List<PImage> images)
     {
         return new Entity(EntityKind.BLACKSMITH, id, position, images, 0, 0, 0,
@@ -316,7 +316,7 @@ public final class Functions
                           resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
-    public static Entity createObstacle(
+    private static Entity createObstacle(
             String id, Point position, List<PImage> images)
     {
         return new Entity(EntityKind.OBSTACLE, id, position, images, 0, 0, 0,
@@ -348,7 +348,7 @@ public final class Functions
                           QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
-    public static Entity createVein(
+    private static Entity createVein(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Entity(EntityKind.VEIN, id, position, images, 0, 0,
