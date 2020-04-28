@@ -26,11 +26,11 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
-    public static Point worldToViewport(Viewport viewport, int col, int row) {
+    private static Point worldToViewport(Viewport viewport, int col, int row) {
         return new Point(col - viewport.col, row - viewport.row);
     }
 
-    public static Point viewportToWorld(Viewport viewport, int col, int row) {
+    private static Point viewportToWorld(Viewport viewport, int col, int row) {
         return new Point(col + viewport.col, row + viewport.row);
     }
 
@@ -52,7 +52,7 @@ public final class WorldView
             for (int col = 0; col < viewport.numCols; col++) {
                 Point worldPoint = WorldView.viewportToWorld(viewport, col, row);
                 Optional<PImage> image =
-                        Functions.getBackgroundImage(world, worldPoint);
+                        Background.getBackgroundImage(world, worldPoint);
                 if (image.isPresent()) {
                     screen.image(image.get(), col * tileWidth,
                                       row * tileHeight);

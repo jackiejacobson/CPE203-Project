@@ -51,32 +51,32 @@ public final class Action
     {
         switch (entity.kind) {
             case MINER_FULL:
-                Functions.executeMinerFullActivity(entity, world,
+                entity.executeMinerFullActivity(entity, world,
                                          imageStore, scheduler);
                 break;
 
             case MINER_NOT_FULL:
-                Functions.executeMinerNotFullActivity(entity, world,
+                entity.executeMinerNotFullActivity(entity, world,
                                             imageStore, scheduler);
                 break;
 
             case ORE:
-                Functions.executeOreActivity(entity, world,
+                entity.executeOreActivity(entity, world,
                                    imageStore, scheduler);
                 break;
 
             case ORE_BLOB:
-                Functions.executeOreBlobActivity(entity, world,
+                entity.executeOreBlobActivity(entity, world,
                                        imageStore, scheduler);
                 break;
 
             case QUAKE:
-                Functions.executeQuakeActivity(entity, world,
+                entity.executeQuakeActivity(entity, world,
                                      imageStore, scheduler);
                 break;
 
             case VEIN:
-                Functions.executeVeinActivity(entity, world,
+                entity.executeVeinActivity(entity, world,
                                     imageStore, scheduler);
                 break;
 
