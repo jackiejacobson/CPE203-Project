@@ -20,15 +20,15 @@ public final class Entity
     private final int BLOB_ANIMATION_MIN = 50;
     private final int BLOB_ANIMATION_MAX = 150;
 
-    public EntityKind kind;
-    public String id;
-    public Point position;
-    public List<PImage> images;
-    public int imageIndex;
-    public int resourceLimit;
-    public int resourceCount;
-    public int actionPeriod;
-    public int animationPeriod;
+    private EntityKind kind;
+    private String id;
+    private Point position;
+    private List<PImage> images;
+    private int imageIndex;
+    private int resourceLimit;
+    private int resourceCount;
+    private int actionPeriod;
+    private int animationPeriod;
 
     public Entity(
             EntityKind kind,
@@ -50,7 +50,22 @@ public final class Entity
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }
-
+    public Point getPosition(){
+        return position;
+    }
+    public Point setPosition(Point point){
+         this.position = new Point(point.x, point.y);
+         return position;
+    }
+    public List<PImage> getImages(){
+        return images;
+    }
+    public int getImageIndex(){
+        return imageIndex;
+    }
+    public EntityKind getKind(){
+        return kind;
+    }
     private boolean moveToNotFull(
             Entity miner,
             WorldModel world,
@@ -131,7 +146,7 @@ public final class Entity
         }
     }
 
-    public Point nextPositionMiner(
+    private Point nextPositionMiner(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.x - position.x);
@@ -149,7 +164,7 @@ public final class Entity
         return newPos;
     }
 
-    public Point nextPositionOreBlob(
+    private Point nextPositionOreBlob(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.x - position.x);
@@ -174,7 +189,7 @@ public final class Entity
         return newPos;
     }
 
-    public boolean transformNotFull(
+    private boolean transformNotFull(
             Entity entity,
             WorldModel world,
             EventScheduler scheduler,
@@ -198,7 +213,7 @@ public final class Entity
         return false;
     }
 
-    public void transformFull(
+    private void transformFull(
             Entity entity,
             WorldModel world,
             EventScheduler scheduler,
