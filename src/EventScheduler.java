@@ -2,9 +2,9 @@ import java.util.*;
 
 public final class EventScheduler
 {
-    public PriorityQueue<Event> eventQueue;
-    public Map<Entity, List<Event>> pendingEvents;
-    public double timeScale;
+    private PriorityQueue<Event> eventQueue;
+    private Map<Entity, List<Event>> pendingEvents;
+    private double timeScale;
 
     public EventScheduler(double timeScale) {
         this.eventQueue = new PriorityQueue<>(new EventComparator());
@@ -14,12 +14,12 @@ public final class EventScheduler
 
     public void updateOnTime(EventScheduler scheduler, long time) {
         while (!scheduler.eventQueue.isEmpty()
-                && scheduler.eventQueue.peek().time < time) {
+                && scheduler.eventQueue.peek().getTime() < time) {
             Event next = scheduler.eventQueue.poll();
 
             scheduler.removePendingEvent(next);
 
-            next.action.executeAction(scheduler);
+            next.getAction().executeAction(scheduler);
         }
     }
 
@@ -53,9 +53,9 @@ public final class EventScheduler
         }
     }
 
-    public void removePendingEvent(Event event)
+    private void removePendingEvent(Event event)
     {
-        List<Event> pending = pendingEvents.get(event.entity);
+        List<Event> pending = pendingEvents.get(event.getEntity());
 
         if (pending != null) {
             pending.remove(event);
