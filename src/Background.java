@@ -26,12 +26,12 @@ public final class Background
     }
 
     public static Background getBackgroundCell(WorldModel world, Point pos) {
-        return world.background[pos.y][pos.x];
+        return world.getBackground()[pos.y][pos.x];
     }
 
     public void setBackgroundCell(
             WorldModel world, Point pos, Background background)
     {
-        world.background[pos.y][pos.x] = background;
+        world.getBackground()[pos.y][pos.x] = background;
     }
 }

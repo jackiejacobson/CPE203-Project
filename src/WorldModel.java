@@ -2,12 +2,12 @@ import java.util.*;
 
 public final class WorldModel
 {
-    public static final int ORE_REACH = 1;
-    public int numRows;
-    public int numCols;
-    public Background background[][];
-    public Entity occupancy[][];
-    public Set<Entity> entities;
+    private static final int ORE_REACH = 1;
+    private final int numRows;
+    private final int numCols;
+    private Background background[][];
+    private Entity occupancy[][];
+    private Set<Entity> entities;
 
     public WorldModel(int numRows, int numCols, Background defaultBackground) {
         this.numRows = numRows;
@@ -20,7 +20,19 @@ public final class WorldModel
             Arrays.fill(this.background[row], defaultBackground);
         }
     }
+    public int getNumRows(){
+        return numRows;
+    }
+    public int getNumCols(){
+        return numCols;
+    }
+    public Set<Entity> getEntities(){
+        return entities;
+    }
 
+    public Background[][] getBackground(){
+        return background;
+    }
     private Optional<Entity> nearestEntity(
             List<Entity> entities, Point pos)
     {
@@ -107,7 +119,7 @@ public final class WorldModel
         removeEntityAt(entity.position);
     }
 
-    public void removeEntityAt( Point pos) {
+    private void removeEntityAt( Point pos) {
         if (withinBounds(pos) && getOccupancyCell(pos) != null) {
             Entity entity = getOccupancyCell( pos);
 
@@ -119,7 +131,7 @@ public final class WorldModel
         }
     }
 
-    public Entity getOccupancyCell(Point pos) {
+    private Entity getOccupancyCell(Point pos) {
         return occupancy[pos.y][pos.x];
     }
 
