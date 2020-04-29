@@ -1,0 +1,20 @@
+Functions Methods:
+
+LoadImages: This function takes in a scanner method that requires some sort of user input and looks like it’s only called once in the main
+
+processImageLine: I would place this method wherever loadImages goes
+getImages:  arguably, this method can be placed into imageStore, but I couldn’t tell what images this method was trying to get 
+
+setAlpha: Only occurs once 
+Load: Similar to LoadImages, this takes in a scanner method which isn’t called with a specific class
+
+processLine: This method takes in a string line and works dependent on what is inputted, I felt that as being a helper function to load(), it should stay within the same class
+parseBackground: this only runs after a condition is met in process line as another helper function and therefore doesn’t necessarily have to be in a class
+ParseMiner, Obstacle, Ore, Smith, Vein: I would place these methods wherever processLine is as they are helper functions for parsing an inputted string 
+
+CreateAnimationAction, ActivityAction, CreateMiner,Obstacle,Ore,OreBlob, Quake,Vein: it made more sense to leave these in Functions instead of the Entity or Action classes because those respective classes should assist in modifying or constructing the object after these create methods are called
+
+Ambiguous Functions:
+ExecuteMiner,Ore,Ore,OreBlob,Quake,Vein Activity: I would argue that these methods could be placed in WorldModel or Entity because while they use a lot of constructors in the Entity class, it could be more organized to place them in the WorldModel class as they update many constructors in that class. I chose to put them in the Entity class because it saved time on making new getter and setter methods. 
+
+moveToFull,NotFull,OreBlob: these methods could be placed in either Entity or WorldModel because they use the addEntity, removeEntity methods that I placed in the WorldModel class, but they also update the position of the Entity, since this was something that effected the position of a particular Entity, I decided to place these functions in the Entity class. It’s also unclear as to what the difference between a Full and NotFull Miner is. 
