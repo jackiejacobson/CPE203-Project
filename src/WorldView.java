@@ -26,12 +26,19 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
-    private static Point worldToViewport(Viewport viewport, int col, int row) {
-        return new Point(col - viewport.col, row - viewport.row);
-    }
-
-    private static Point viewportToWorld(Viewport viewport, int col, int row) {
-        return new Point(col + viewport.col, row + viewport.row);
+    public static PImage getCurrentImage(Object entity) {
+        if (entity instanceof Background) {
+            return ((Background)entity).getImages().get(
+                    ((Background)entity).getImageIndex());
+        }
+        else if (entity instanceof Entity) {
+            return ((Entity)entity).getImages().get(((Entity)entity).getImageIndex());
+        }
+        else {
+            throw new UnsupportedOperationException(
+                    String.format("getCurrentImage not supported for %s",
+                                  entity));
+        }
     }
 
     public void shiftView(int colDelta, int rowDelta) {
@@ -50,7 +57,7 @@ public final class WorldView
     private void drawBackground() {
         for (int row = 0; row < viewport.numRows; row++) {
             for (int col = 0; col < viewport.numCols; col++) {
-                Point worldPoint = WorldView.viewportToWorld(viewport, col, row);
+                Point worldPoint = Viewport.viewportToWorld(viewport, col, row);
                 Optional<PImage> image =
                         Background.getBackgroundImage(world, worldPoint);
                 if (image.isPresent()) {
@@ -66,8 +73,8 @@ public final class WorldView
             Point pos = entity.getPosition();
 
             if (viewport.contains(pos)) {
-                Point viewPoint = WorldView.worldToViewport(viewport, pos.x, pos.y);
-                screen.image(ImageStore.getCurrentImage(entity),
+                Point viewPoint = Viewport.worldToViewport(viewport, pos.x, pos.y);
+                screen.image(getCurrentImage(entity),
                                   viewPoint.x * tileWidth,
                                   viewPoint.y * tileHeight);
             }

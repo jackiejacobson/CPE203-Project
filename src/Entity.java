@@ -240,49 +240,49 @@ public final class Entity
         switch (entity.kind) {
             case MINER_FULL:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
-                              Functions.createAnimationAction(entity, 0),
+                              ActionFactory.createAnimationAction(entity, 0),
                               entity.getAnimationPeriod());
                 break;
 
             case MINER_NOT_FULL:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
-                              Functions.createAnimationAction(entity, 0),
+                              ActionFactory.createAnimationAction(entity, 0),
                               entity.getAnimationPeriod());
                 break;
 
             case ORE:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
                 break;
 
             case ORE_BLOB:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
                 scheduler.scheduleEvent(entity,
-                              Functions.createAnimationAction(entity, 0),
+                              ActionFactory.createAnimationAction(entity, 0),
                               entity.getAnimationPeriod());
                 break;
 
             case QUAKE:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
-                scheduler.scheduleEvent(entity, Functions.createAnimationAction(entity,
+                scheduler.scheduleEvent(entity, ActionFactory.createAnimationAction(entity,
                                                                        QUAKE_ANIMATION_REPEAT_COUNT),
                               entity.getAnimationPeriod());
                 break;
 
             case VEIN:
                 scheduler.scheduleEvent(entity,
-                              Functions.createActivityAction(entity, world, imageStore),
+                              ActionFactory.createActivityAction(entity, world, imageStore),
                               entity.actionPeriod);
                 break;
 
@@ -318,7 +318,7 @@ public final class Entity
         }
 
                     scheduler.scheduleEvent(entity,
-                      Functions.createActivityAction(entity, world, imageStore),
+                      ActionFactory.createActivityAction(entity, world, imageStore),
                       entity.actionPeriod);
     }
 
@@ -346,7 +346,7 @@ public final class Entity
         }
 
         scheduler.scheduleEvent(entity,
-                      Functions.createActivityAction(entity, world, imageStore),
+                      ActionFactory.createActivityAction(entity, world, imageStore),
                       nextPeriod);
     }
 
@@ -387,7 +387,7 @@ public final class Entity
                 || !transformNotFull(entity, world, scheduler, imageStore))
         {
             scheduler.scheduleEvent(entity,
-                          Functions.createActivityAction(entity, world, imageStore),
+                          ActionFactory.createActivityAction(entity, world, imageStore),
                           entity.actionPeriod);
         }
     }
@@ -408,7 +408,7 @@ public final class Entity
         }
         else {
             scheduler.scheduleEvent(entity,
-                          Functions.createActivityAction(entity, world, imageStore),
+                          ActionFactory.createActivityAction(entity, world, imageStore),
                           entity.actionPeriod);
         }
     }

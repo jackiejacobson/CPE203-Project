@@ -273,17 +273,6 @@ public final class Functions
         return properties.length == VEIN_NUM_PROPERTIES;
     }
 
-    public static Action createAnimationAction(Entity entity, int repeatCount) {
-        return new Action(ActionKind.ANIMATION, entity, null, null,
-                          repeatCount);
-    }
-
-    public static Action createActivityAction(
-            Entity entity, WorldModel world, ImageStore imageStore)
-    {
-        return new Action(ActionKind.ACTIVITY, entity, world, imageStore, 0);
-    }
-
     private static Entity createBlacksmith(
             String id, Point position, List<PImage> images)
     {

@@ -27,7 +27,7 @@ public final class Background
             WorldModel world, Point pos)
     {
         if (world.withinBounds(pos)) {
-            return Optional.of(ImageStore.getCurrentImage(getBackgroundCell(world, pos)));
+            return Optional.of(WorldView.getCurrentImage(getBackgroundCell(world, pos)));
         }
         else {
             return Optional.empty();
