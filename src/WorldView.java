@@ -26,21 +26,6 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
-    public static PImage getCurrentImage(Object entity) {
-        if (entity instanceof Background) {
-            return ((Background)entity).getImages().get(
-                    ((Background)entity).getImageIndex());
-        }
-        else if (entity instanceof Entity) {
-            return ((Entity)entity).getImages().get(((Entity)entity).getImageIndex());
-        }
-        else {
-            throw new UnsupportedOperationException(
-                    String.format("getCurrentImage not supported for %s",
-                                  entity));
-        }
-    }
-
     public void shiftView(int colDelta, int rowDelta) {
         int newCol = clamp(viewport.col + colDelta, 0,
                            world.getNumCols() - viewport.numCols);
@@ -74,7 +59,7 @@ public final class WorldView
 
             if (viewport.contains(pos)) {
                 Point viewPoint = Viewport.worldToViewport(viewport, pos.x, pos.y);
-                screen.image(getCurrentImage(entity),
+                screen.image(Background.getCurrentImage(entity),
                                   viewPoint.x * tileWidth,
                                   viewPoint.y * tileHeight);
             }
