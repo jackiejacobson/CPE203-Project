@@ -14,19 +14,9 @@ public final class Background
         this.images = images;
     }
 
-    public static PImage getCurrentImage(Object entity) {
-        if (entity instanceof Background) {
-            return ((Background)entity).getImages().get(
-                    ((Background)entity).getImageIndex());
-        }
-        else if (entity instanceof Entity) {
-            return ((Entity)entity).getImages().get(((Entity)entity).getImageIndex());
-        }
-        else {
-            throw new UnsupportedOperationException(
-                    String.format("getCurrentImage not supported for %s",
-                                  entity));
-        }
+    public PImage getCurrentImage() {
+            return getImages().get(
+                    getImageIndex());
     }
 
     public String getId(){
@@ -43,7 +33,7 @@ public final class Background
             WorldModel world, Point pos)
     {
         if (world.withinBounds(pos)) {
-            return Optional.of(getCurrentImage(getBackgroundCell(world, pos)));
+            return Optional.of(getBackgroundCell(world, pos).getCurrentImage());
         }
         else {
             return Optional.empty();

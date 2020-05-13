@@ -151,6 +151,10 @@ public class OreBlob implements Entity{
                 return animationPeriod;
     }
 
+    public PImage getCurrentImage() {
+        return getImages().get(getImageIndex());
+    }
+
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
     }

@@ -62,6 +62,9 @@ public class Obstacle implements Entity{
 
     }
 
+    public PImage getCurrentImage( ) {
+        return getImages().get(getImageIndex());
+    }
 
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();

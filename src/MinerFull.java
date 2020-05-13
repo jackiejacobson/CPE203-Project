@@ -175,6 +175,9 @@ public class MinerFull implements Entity{
         }
     }
 
+    public PImage getCurrentImage( ) {
+        return getImages().get(getImageIndex());
+    }
 
     public int getAnimationPeriod() {
                 return animationPeriod;

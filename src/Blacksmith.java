@@ -48,6 +48,7 @@ public class Blacksmith implements Entity {
         return 0;
     }
 
+
     public Point setPosition(Point point){
         this.position = new Point(point.x, point.y);
         return position;
@@ -64,6 +65,9 @@ public class Blacksmith implements Entity {
 
     }
 
+    public PImage getCurrentImage() {
+            return getImages().get(getImageIndex());
+    }
 
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
