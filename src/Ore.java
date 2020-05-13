@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class Ore implements Entity{
+public class Ore implements ActiveEntity{
 
 
     private final Random rand = new Random();
@@ -56,62 +56,6 @@ public class Ore implements Entity{
     }
 
 
-    /*private boolean moveToOreBlob(
-            Entity blob,
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        if (this.position.adjacent(target.getPosition())) {
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents( target);
-            return true;
-        }
-        else {
-            Point nextPos = this.nextPositionOreBlob(world, target.getPosition());
-
-            if (!this.getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(blob, nextPos);
-            }
-            return false;
-        }
-    }
-
-
-
-
-    private Point nextPositionOreBlob(
-            WorldModel world, Point destPos)
-    {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
-
-        Optional<Entity> occupant = world.getOccupant(newPos);
-
-        if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                == Ore.class)))
-        {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
-            occupant = world.getOccupant(newPos);
-
-            if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
-                    == Ore.class)))
-            {
-                newPos = position;
-            }
-        }
-
-        return newPos;
-    }
-
-     */
-
 
     public void scheduleActions(
             //Entity entity,
@@ -126,15 +70,15 @@ public class Ore implements Entity{
     }
 
     public void executeActivity(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
     {
         Point pos = this.position;
 
-        world.removeEntity(entity);
-        scheduler.unscheduleAllEvents(entity);
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
 
         OreBlob blob = (OreBlob) EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
                 this.actionPeriod / BLOB_PERIOD_SCALE,
@@ -147,10 +91,6 @@ public class Ore implements Entity{
         blob.scheduleActions(scheduler, world, imageStore);
     }
 
-    @Override
-    public int getAnimationPeriod() {
-        return 0;
-    }
 
     public PImage getCurrentImage( ) {
         return getImages().get(getImageIndex());

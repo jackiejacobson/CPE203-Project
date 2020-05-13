@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class MinerNotFull implements Entity {
+public class MinerNotFull implements MinerEntity {
 
     private String id;
     private Point position;
@@ -48,7 +48,7 @@ public class MinerNotFull implements Entity {
     }
 
     private boolean moveToNotFull(
-            Entity miner,
+            //Entity miner,
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -70,7 +70,7 @@ public class MinerNotFull implements Entity {
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                world.moveEntity(miner, nextPos);
+                world.moveEntity(this, nextPos);
             }
             return false;
         }
@@ -123,7 +123,7 @@ public class MinerNotFull implements Entity {
 
 
     private boolean transformNotFull(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
@@ -134,8 +134,8 @@ public class MinerNotFull implements Entity {
                     this.animationPeriod,
                     this.images);
 
-            world.removeEntity(entity);
-            scheduler.unscheduleAllEvents( entity);
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents( this);
 
             world.addEntity(miner);
             miner.scheduleActions(scheduler, world, imageStore);
@@ -165,7 +165,7 @@ public class MinerNotFull implements Entity {
 
 
     public void executeActivity(
-            Entity entity,
+           // Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -173,13 +173,13 @@ public class MinerNotFull implements Entity {
         Optional<Entity> notFullTarget =
                 world.findNearest(this.position, Ore.class);
 
-        if (!notFullTarget.isPresent() || !moveToNotFull(entity, world,
+        if (!notFullTarget.isPresent() || !moveToNotFull( world,
                 notFullTarget.get(),
                 scheduler)
-                || !transformNotFull(entity, world, scheduler, imageStore))
+                || !transformNotFull( world, scheduler, imageStore))
         {
-            scheduler.scheduleEvent(entity,
-                    ActionFactory.createActivityAction(entity, world, imageStore),
+            scheduler.scheduleEvent(this,
+                    ActionFactory.createActivityAction(this, world, imageStore),
                     this.actionPeriod);
         }
     }

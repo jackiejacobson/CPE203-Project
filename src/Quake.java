@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 
 
-public class Quake implements Entity {
+public class Quake implements AnimatedEntity {
 
 
     private String id;
@@ -64,13 +64,13 @@ public class Quake implements Entity {
     }
 
     public void executeActivity(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        scheduler.unscheduleAllEvents(entity);
-        world.removeEntity(entity);
+        scheduler.unscheduleAllEvents(this);
+        world.removeEntity(this);
     }
 
 

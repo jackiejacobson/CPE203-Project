@@ -26,16 +26,6 @@ public class Obstacle implements Entity{
         return position;
     }
 
-    @Override
-    public void executeActivity(Entity entity, WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-
-    }
-
-    @Override
-    public int getAnimationPeriod() {
-        return 0;
-    }
-
     public Point setPosition(Point point){
         this.position = new Point(point.x, point.y);
         return position;
@@ -47,10 +37,6 @@ public class Obstacle implements Entity{
         return imageIndex;
     }
 
-    @Override
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
-
-    }
 
 
     public PImage getCurrentImage( ) {

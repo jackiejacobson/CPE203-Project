@@ -1,12 +1,12 @@
 public class Activity implements Action {
 
-    private Entity entity;
+    private ActiveEntity entity;
     private WorldModel world;
     private ImageStore imageStore;
     private int repeatCount;
 
     public Activity(
-            Entity entity,
+            ActiveEntity entity,
             WorldModel world,
             ImageStore imageStore,
             int repeatCount)
@@ -25,7 +25,7 @@ public class Activity implements Action {
     public void executeAction(
             EventScheduler scheduler)
     {
-        entity.executeActivity(entity, world, imageStore, scheduler);
+        entity.executeActivity(world, imageStore, scheduler);
     }
 
 }

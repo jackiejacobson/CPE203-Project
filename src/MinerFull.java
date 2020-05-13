@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class MinerFull implements Entity{
+public class MinerFull implements MinerEntity{
 
     private String id;
     private Point position;
@@ -79,7 +79,7 @@ public class MinerFull implements Entity{
      */
 
     private boolean moveToFull(
-            Entity miner,
+            //Entity miner,
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
@@ -97,7 +97,7 @@ public class MinerFull implements Entity{
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                world.moveEntity(miner, nextPos);
+                world.moveEntity(this, nextPos);
             }
             return false;
         }
@@ -122,7 +122,7 @@ public class MinerFull implements Entity{
     }
 
     private void transformFull(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             EventScheduler scheduler,
             ImageStore imageStore)
@@ -132,8 +132,8 @@ public class MinerFull implements Entity{
                 this.animationPeriod,
                 this.images);
 
-        world.removeEntity(entity);
-        scheduler.unscheduleAllEvents(entity);
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
 
         world.addEntity(miner);
         miner.scheduleActions(scheduler, world, imageStore);
@@ -155,7 +155,7 @@ public class MinerFull implements Entity{
 
 
     public void executeActivity(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -163,14 +163,14 @@ public class MinerFull implements Entity{
         Optional<Entity> fullTarget =
                 world.findNearest(this.position, Blacksmith.class);
 
-        if (fullTarget.isPresent() && moveToFull(entity, world,
+        if (fullTarget.isPresent() && moveToFull( world,
                 fullTarget.get(), scheduler))
         {
-            transformFull(entity, world, scheduler, imageStore);
+            transformFull(world, scheduler, imageStore);
         }
         else {
-            scheduler.scheduleEvent(entity,
-                    ActionFactory.createActivityAction(entity, world, imageStore),
+            scheduler.scheduleEvent(this,
+                    ActionFactory.createActivityAction(this, world, imageStore),
                     this.actionPeriod);
         }
     }

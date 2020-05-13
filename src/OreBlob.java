@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob implements Entity{
+public class OreBlob implements AnimatedEntity{
 
     private final String QUAKE_KEY = "quake";
 
@@ -50,12 +50,12 @@ public class OreBlob implements Entity{
 
 
     private boolean moveToOreBlob(
-            Entity blob,
+            //Entity blob,
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
     {
-        if (blob.getPosition().adjacent(target.getPosition())) {
+        if (this.getPosition().adjacent(target.getPosition())) {
             world.removeEntity(target);
             scheduler.unscheduleAllEvents( target);
             return true;
@@ -63,13 +63,13 @@ public class OreBlob implements Entity{
         else {
             Point nextPos = nextPositionOreBlob(world, target.getPosition());
 
-            if (!blob.getPosition().equals(nextPos)) {
+            if (!this.getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
 
-                world.moveEntity(blob, nextPos);
+                world.moveEntity(this, nextPos);
             }
             return false;
         }
@@ -119,7 +119,7 @@ public class OreBlob implements Entity{
 
 
     public void executeActivity(
-            Entity entity,
+            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -131,7 +131,7 @@ public class OreBlob implements Entity{
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().getPosition();
 
-            if (moveToOreBlob(entity, world, blobTarget.get(), scheduler)) {
+            if (moveToOreBlob(world, blobTarget.get(), scheduler)) {
                 Quake quake = (Quake) EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
@@ -141,8 +141,8 @@ public class OreBlob implements Entity{
             }
         }
 
-        scheduler.scheduleEvent(entity,
-                ActionFactory.createActivityAction(entity, world, imageStore),
+        scheduler.scheduleEvent(this,
+                ActionFactory.createActivityAction(this, world, imageStore),
                 nextPeriod);
     }
 

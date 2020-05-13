@@ -1,11 +1,11 @@
 public class Animation implements Action {
-    private Entity entity;
+    private AnimatedEntity entity;
     private WorldModel world;
     private ImageStore imageStore;
     private int repeatCount;
 
     public Animation(
-            Entity entity,
+            AnimatedEntity entity,
             WorldModel world,
             ImageStore imageStore,
             int repeatCount)
@@ -22,17 +22,16 @@ public class Animation implements Action {
     public int repeatCount() {return repeatCount;}
 
     public void executeAction(
-            EventScheduler scheduler)
-    {
+            EventScheduler scheduler) {
         entity.nextImage();
 
-        if (repeatCount != 1) {
-            scheduler.scheduleEvent(entity,
-                    ActionFactory.createAnimationAction(entity,
-                            Math.max(repeatCount - 1,
-                                    0)),
-                    entity.getAnimationPeriod());
+            if (repeatCount != 1) {
+                scheduler.scheduleEvent(entity,
+                        ActionFactory.createAnimationAction(entity,
+                                Math.max(repeatCount - 1,
+                                        0)),
+                        entity.getAnimationPeriod());
+            }
         }
-    }
 
 }

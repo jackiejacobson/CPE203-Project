@@ -1,8 +1,7 @@
 import processing.core.PImage;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+
 
 public class Blacksmith implements Entity {
 
@@ -11,42 +10,21 @@ public class Blacksmith implements Entity {
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
-    private int actionPeriod;
-    private int animationPeriod;
 
     public Blacksmith(
             String id,
             Point position,
-            List<PImage> images,
-            int resourceLimit,
-            int resourceCount,
-            int actionPeriod,
-            int animationPeriod)
+            List<PImage> images)
     {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
     }
     public Point getPosition(){
         return position;
     }
 
-    @Override
-    public void executeActivity(Entity entity, WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-
-    }
-
-    @Override
-    public int getAnimationPeriod() {
-        return 0;
-    }
 
 
     public Point setPosition(Point point){
@@ -58,11 +36,6 @@ public class Blacksmith implements Entity {
     }
     public int getImageIndex(){
         return imageIndex;
-    }
-
-    @Override
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
-
     }
 
     public PImage getCurrentImage() {
