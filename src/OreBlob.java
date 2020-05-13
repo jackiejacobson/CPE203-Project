@@ -2,22 +2,10 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class OreBlob implements Entity{
-    private final String ORE_ID_PREFIX = "ore -- ";
-    private final int ORE_CORRUPT_MIN = 20000;
-    private final int ORE_CORRUPT_MAX = 30000;
 
     private final String QUAKE_KEY = "quake";
-    private final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-
-    private final Random rand = new Random();
-    private final String BLOB_KEY = "blob"; //changed code
-    private final String BLOB_ID_SUFFIX = " -- blob";
-    private final int BLOB_PERIOD_SCALE = 4;
-    private final int BLOB_ANIMATION_MIN = 50;
-    private final int BLOB_ANIMATION_MAX = 150;
 
     private String id;
     private Point position;

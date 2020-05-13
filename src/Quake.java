@@ -5,9 +5,6 @@ import java.util.List;
 
 public class Quake implements Entity {
 
-    private final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-
-
 
     private String id;
     private Point position;
@@ -60,8 +57,9 @@ public class Quake implements Entity {
                 scheduler.scheduleEvent(entity,
                         ActionFactory.createActivityAction(entity, world, imageStore),
                         this.actionPeriod);
-                scheduler.scheduleEvent(entity, ActionFactory.createAnimationAction(entity,
-                        QUAKE_ANIMATION_REPEAT_COUNT),
+        int QUAKE_ANIMATION_REPEAT_COUNT = 10;
+        scheduler.scheduleEvent(entity, ActionFactory.createAnimationAction(entity,
+                QUAKE_ANIMATION_REPEAT_COUNT),
                         this.getAnimationPeriod());
     }
 

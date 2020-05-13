@@ -56,7 +56,7 @@ public class Ore implements Entity{
     }
 
 
-    private boolean moveToOreBlob(
+    /*private boolean moveToOreBlob(
             Entity blob,
             WorldModel world,
             Entity target,
@@ -83,6 +83,8 @@ public class Ore implements Entity{
     }
 
 
+
+
     private Point nextPositionOreBlob(
             WorldModel world, Point destPos)
     {
@@ -107,6 +109,8 @@ public class Ore implements Entity{
 
         return newPos;
     }
+
+     */
 
 
     public void scheduleActions(

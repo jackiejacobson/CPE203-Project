@@ -9,9 +9,6 @@ public class Vein implements Entity {
     private final int ORE_CORRUPT_MIN = 20000;
     private final int ORE_CORRUPT_MAX = 30000;
 
-    private final String QUAKE_KEY = "quake";
-    private final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
-
     private final Random rand = new Random();
 
     private String id;
@@ -87,7 +84,7 @@ public class Vein implements Entity {
 
         scheduler.scheduleEvent(entity,
                 ActionFactory.createActivityAction(entity, world, imageStore),
-                this.actionPeriod);
+                actionPeriod);
     }
 
     @Override
