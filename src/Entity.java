@@ -16,7 +16,7 @@ public interface Entity
     public List<PImage> getImages();
     public int getImageIndex();
 
-    public void scheduleActions(Entity entity, EventScheduler scheduler, WorldModel world, ImageStore imageStore);
+    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore);
 
     public Point setPosition(Point pos);
 

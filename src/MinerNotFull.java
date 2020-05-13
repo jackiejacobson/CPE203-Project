@@ -129,7 +129,7 @@ public class MinerNotFull implements Entity {
             ImageStore imageStore)
     {
         if (this.resourceCount >= this.resourceLimit) {
-            Entity miner = EntityFactory.createMinerFull(this.id, this.resourceLimit,
+            MinerFull miner = (MinerFull) EntityFactory.createMinerFull(this.id, this.resourceLimit,
                     this.position, this.actionPeriod,
                     this.animationPeriod,
                     this.images);
@@ -138,7 +138,7 @@ public class MinerNotFull implements Entity {
             scheduler.unscheduleAllEvents( entity);
 
             world.addEntity(miner);
-            this.scheduleActions(miner, scheduler, world, imageStore);
+            miner.scheduleActions(scheduler, world, imageStore);
 
             return true;
         }
@@ -149,17 +149,17 @@ public class MinerNotFull implements Entity {
 
 
     public void scheduleActions(
-            Entity entity,
+            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
     {
 
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createActivityAction(entity, world, imageStore),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createActivityAction(this, world, imageStore),
                         this.actionPeriod);
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createAnimationAction(entity, 0),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createAnimationAction(this, 0),
                         this.getAnimationPeriod());
     }
 

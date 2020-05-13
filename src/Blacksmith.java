@@ -61,7 +61,7 @@ public class Blacksmith implements Entity {
     }
 
     @Override
-    public void scheduleActions(Entity entity, EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
+    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
 
     }
 

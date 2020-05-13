@@ -114,13 +114,13 @@ public class Ore implements Entity{
 
 
     public void scheduleActions(
-            Entity entity,
+            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
     {
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createActivityAction(entity, world, imageStore),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createActivityAction(this, world, imageStore),
                         this.actionPeriod);
 
     }
@@ -136,7 +136,7 @@ public class Ore implements Entity{
         world.removeEntity(entity);
         scheduler.unscheduleAllEvents(entity);
 
-        Entity blob = EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
+        OreBlob blob = (OreBlob) EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
                 this.actionPeriod / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
@@ -144,7 +144,7 @@ public class Ore implements Entity{
                 imageStore.getImageList(BLOB_KEY));
 
         world.addEntity(blob);
-        scheduleActions(blob, scheduler, world, imageStore);
+        blob.scheduleActions(scheduler, world, imageStore);
     }
 
     @Override

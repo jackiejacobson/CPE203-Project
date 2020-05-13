@@ -43,8 +43,7 @@ public class EntityFactory {
     static Entity createObstacle(
             String id, Point position, List<PImage> images)
     {
-        return new Obstacle(id, position, images, 0, 0, 0,
-                          0);
+        return new Obstacle(id, position, images);
     }
 
     public static Entity createOre(

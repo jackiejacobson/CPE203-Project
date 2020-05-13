@@ -54,13 +54,13 @@ public class Vein implements Entity {
 
 
     public void scheduleActions(
-            Entity entity,
+            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
     {
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createActivityAction(entity, world, imageStore),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createActivityAction(this, world, imageStore),
                         this.actionPeriod);
     }
 
@@ -74,12 +74,12 @@ public class Vein implements Entity {
         Optional<Point> openPt = world.findOpenAround(this.position);
 
         if (openPt.isPresent()) {
-            Entity ore = EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
+            Ore ore =  (Ore) EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
                     ORE_CORRUPT_MIN + rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(Functions.ORE_KEY));
             world.addEntity(ore);
-            scheduleActions(ore, scheduler, world, imageStore);
+            ore.scheduleActions(scheduler, world, imageStore);
         }
 
         scheduler.scheduleEvent(entity,

@@ -102,16 +102,16 @@ public class OreBlob implements Entity{
     }
 
     public void scheduleActions(
-            Entity entity,
+            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
     {
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createActivityAction(entity, world, imageStore),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createActivityAction(this, world, imageStore),
                         this.actionPeriod);
-                scheduler.scheduleEvent(entity,
-                        ActionFactory.createAnimationAction(entity, 0),
+                scheduler.scheduleEvent(this,
+                        ActionFactory.createAnimationAction(this, 0),
                         this.getAnimationPeriod());
 
     }
@@ -132,12 +132,12 @@ public class OreBlob implements Entity{
             Point tgtPos = blobTarget.get().getPosition();
 
             if (moveToOreBlob(entity, world, blobTarget.get(), scheduler)) {
-                Entity quake = EntityFactory.createQuake(tgtPos,
+                Quake quake = (Quake) EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);
                 nextPeriod += this.actionPeriod;
-                scheduleActions(quake, scheduler, world, imageStore);
+                quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 

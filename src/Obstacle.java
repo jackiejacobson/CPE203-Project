@@ -9,29 +9,19 @@ public class Obstacle implements Entity{
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
-    private int actionPeriod;
-    private int animationPeriod;
 
     public Obstacle(
             String id,
             Point position,
-            List<PImage> images,
-            int resourceLimit,
-            int resourceCount,
-            int actionPeriod,
-            int animationPeriod)
+            List<PImage> images)
     {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
     }
+
+
     public Point getPosition(){
         return position;
     }
@@ -58,9 +48,10 @@ public class Obstacle implements Entity{
     }
 
     @Override
-    public void scheduleActions(Entity entity, EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
+    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore) {
 
     }
+
 
     public PImage getCurrentImage( ) {
         return getImages().get(getImageIndex());
