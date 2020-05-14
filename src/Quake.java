@@ -10,8 +10,6 @@ public class Quake implements AnimatedEntity {
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
     private int actionPeriod;
     private int animationPeriod;
 
@@ -19,8 +17,6 @@ public class Quake implements AnimatedEntity {
             String id,
             Point position,
             List<PImage> images,
-            int resourceLimit,
-            int resourceCount,
             int actionPeriod,
             int animationPeriod)
     {
@@ -28,8 +24,6 @@ public class Quake implements AnimatedEntity {
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
         this.animationPeriod = animationPeriod;
     }

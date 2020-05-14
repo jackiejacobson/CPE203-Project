@@ -14,10 +14,12 @@ public final class Background
         this.images = images;
     }
 
-    public PImage getCurrentImage() {
+    private PImage getCurrentImage() {
             return getImages().get(
                     getImageIndex());
     }
+
+
 
     public String getId(){
         return id;

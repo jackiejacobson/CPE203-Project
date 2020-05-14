@@ -6,9 +6,8 @@ public class EntityFactory {
 
     private static final String QUAKE_ID = "quake";
     private static final int QUAKE_ACTION_PERIOD = 1100;
-    private static int QUAKE_ANIMATION_PERIOD = 100;
 
-    static Entity createBlacksmith(
+    public static Entity createBlacksmith(
             String id, Point position, List<PImage> images)
     {
         return new Blacksmith(id, position, images);
@@ -23,7 +22,7 @@ public class EntityFactory {
             List<PImage> images)
     {
         return new MinerFull( id, position, images,
-                          resourceLimit, resourceLimit, actionPeriod,
+                          resourceLimit, actionPeriod,
                           animationPeriod);
     }
 
@@ -48,8 +47,8 @@ public class EntityFactory {
     public static Entity createOre(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Ore(id, position, images, 0, 0,
-                          actionPeriod, 0);
+        return new Ore(id, position, images,
+                          actionPeriod);
     }
 
     public static Entity createOreBlob(
@@ -59,21 +58,22 @@ public class EntityFactory {
             int animationPeriod,
             List<PImage> images)
     {
-        return new OreBlob( id, position, images, 0, 0,
+        return new OreBlob( id, position, images,
                           actionPeriod, animationPeriod);
     }
 
     public static Entity createQuake(
             Point position, List<PImage> images)
     {
-        return new Quake(QUAKE_ID, position, images, 0, 0,
+        int QUAKE_ANIMATION_PERIOD = 100;
+        return new Quake(QUAKE_ID, position, images,
                           QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
     static Entity createVein(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Vein(id, position, images, 0, 0,
-                          actionPeriod, 0);
+        return new Vein(id, position, images,
+                          actionPeriod);
     }
 }

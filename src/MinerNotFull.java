@@ -2,9 +2,8 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
-public class MinerNotFull implements MinerEntity {
+public class MinerNotFull implements MoveToEntity {
 
     private String id;
     private Point position;
@@ -47,13 +46,11 @@ public class MinerNotFull implements MinerEntity {
         return imageIndex;
     }
 
-    private boolean moveToNotFull(
-            //Entity miner,
+    public boolean moveTo(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
     {
-        //if (Point.adjacent(miner.position, target.position)) {
         if (this.position.adjacent(target.getPosition())) {
             this.resourceCount += 1;
             world.removeEntity(target);
@@ -62,7 +59,7 @@ public class MinerNotFull implements MinerEntity {
             return true;
         }
         else {
-            Point nextPos = this.nextPositionMiner(world, target.getPosition());
+            Point nextPos = this.nextPositionEntity(world, target.getPosition());
 
             if (!this.position.equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
@@ -76,34 +73,9 @@ public class MinerNotFull implements MinerEntity {
         }
     }
 
-    /*private boolean moveToFull(
-            Entity miner,
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
-        //if (Point.adjacent(miner.position, target.position))
-        if (this.position.adjacent(this.position)) {
-            return true;
-        }
-        else {
-            Point nextPos = miner.nextPositionMiner(world, target.position);
-
-            if (!miner.position.equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity( miner, nextPos);
-            }
-            return false;
-        }
-    }
-     */
 
 
-    private Point nextPositionMiner(
+    public Point nextPositionEntity(
             WorldModel world, Point destPos)
     {
         int horiz = Integer.signum(destPos.x - position.x);
@@ -149,7 +121,6 @@ public class MinerNotFull implements MinerEntity {
 
 
     public void scheduleActions(
-            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -165,7 +136,6 @@ public class MinerNotFull implements MinerEntity {
 
 
     public void executeActivity(
-           // Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -173,7 +143,7 @@ public class MinerNotFull implements MinerEntity {
         Optional<Entity> notFullTarget =
                 world.findNearest(this.position, Ore.class);
 
-        if (!notFullTarget.isPresent() || !moveToNotFull( world,
+        if (!notFullTarget.isPresent() || !moveTo( world,
                 notFullTarget.get(),
                 scheduler)
                 || !transformNotFull( world, scheduler, imageStore))

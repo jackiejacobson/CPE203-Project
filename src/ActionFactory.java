@@ -8,6 +8,6 @@ public class ActionFactory {
     public static Action createActivityAction(
             Entity entity, WorldModel world, ImageStore imageStore)
     {
-        return new Activity((ActiveEntity) entity, world, imageStore, 0);
+        return new Activity((ActiveEntity) entity, world, imageStore);
     }
 }

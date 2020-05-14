@@ -1,45 +1,31 @@
 import processing.core.PImage;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class Ore implements ActiveEntity{
 
 
     private final Random rand = new Random();
-    private final String BLOB_KEY = "blob"; //changed code
-    private final String BLOB_ID_SUFFIX = " -- blob";
-    private final int BLOB_PERIOD_SCALE = 4;
-    private final int BLOB_ANIMATION_MIN = 50;
-    private final int BLOB_ANIMATION_MAX = 150;
 
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
-    private int resourceCount;
     private int actionPeriod;
-    private int animationPeriod;
 
     public Ore(
             String id,
             Point position,
             List<PImage> images,
-            int resourceLimit,
-            int resourceCount,
-            int actionPeriod,
-            int animationPeriod)
+            int actionPeriod)
+
     {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
-        this.resourceLimit = resourceLimit;
-        this.resourceCount = resourceCount;
         this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
     }
     public Point getPosition(){
         return position;
@@ -58,7 +44,6 @@ public class Ore implements ActiveEntity{
 
 
     public void scheduleActions(
-            //Entity entity,
             EventScheduler scheduler,
             WorldModel world,
             ImageStore imageStore)
@@ -70,7 +55,6 @@ public class Ore implements ActiveEntity{
     }
 
     public void executeActivity(
-            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
@@ -80,6 +64,12 @@ public class Ore implements ActiveEntity{
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
+        //changed code
+        String BLOB_KEY = "blob";
+        String BLOB_ID_SUFFIX = " -- blob";
+        int BLOB_PERIOD_SCALE = 4;
+        int BLOB_ANIMATION_MIN = 50;
+        int BLOB_ANIMATION_MAX = 150;
         OreBlob blob = (OreBlob) EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
                 this.actionPeriod / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
