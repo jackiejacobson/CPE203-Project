@@ -5,8 +5,6 @@ import java.util.Optional;
 
 public class OreBlob implements MoveToEntity{
 
-    private final String QUAKE_KEY = "quake";
-
     private String id;
     private Point position;
     private List<PImage> images;
@@ -124,6 +122,7 @@ public class OreBlob implements MoveToEntity{
             Point tgtPos = blobTarget.get().getPosition();
 
             if (moveTo(world, blobTarget.get(), scheduler)) {
+                String QUAKE_KEY = "quake";
                 Quake quake = (Quake) EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 

@@ -38,7 +38,7 @@ public class EntityFactory {
                           resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
-    static Entity createObstacle(
+    public static Entity createObstacle(
             String id, Point position, List<PImage> images)
     {
         return new Obstacle(id, position, images);
@@ -70,7 +70,7 @@ public class EntityFactory {
                           QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
-    static Entity createVein(
+    public static Entity createVein(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Vein(id, position, images,

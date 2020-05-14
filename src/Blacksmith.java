@@ -42,7 +42,5 @@ public class Blacksmith implements Entity {
             return getImages().get(getImageIndex());
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
+    public void nextImage() {imageIndex = (imageIndex + 1) % images.size();}
 }

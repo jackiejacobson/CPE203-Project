@@ -14,9 +14,6 @@ public class Activity implements Action {
         this.imageStore = imageStore;
     }
 
-    public Entity entity() {return entity;}
-    public WorldModel world() {return world;}
-    public ImageStore imageStore() { return imageStore;}
 
     public void executeAction(
             EventScheduler scheduler)
