@@ -7,13 +7,13 @@ public class EntityFactory {
     private static final String QUAKE_ID = "quake";
     private static final int QUAKE_ACTION_PERIOD = 1100;
 
-    public static Entity createBlacksmith(
+    public static Blacksmith createBlacksmith(
             String id, Point position, List<PImage> images)
     {
         return new Blacksmith(id, position, images);
     }
 
-    public static Entity createMinerFull(
+    public static MinerFull createMinerFull(
             String id,
             int resourceLimit,
             Point position,
@@ -26,7 +26,7 @@ public class EntityFactory {
                           animationPeriod);
     }
 
-    public static Entity createMinerNotFull(
+    public static MinerNotFull createMinerNotFull(
             String id,
             int resourceLimit,
             Point position,
@@ -38,20 +38,20 @@ public class EntityFactory {
                           resourceLimit, 0, actionPeriod, animationPeriod);
     }
 
-    public static Entity createObstacle(
+    public static Obstacle createObstacle(
             String id, Point position, List<PImage> images)
     {
         return new Obstacle(id, position, images);
     }
 
-    public static Entity createOre(
+    public static Ore createOre(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Ore(id, position, images,
                           actionPeriod);
     }
 
-    public static Entity createOreBlob(
+    public static OreBlob createOreBlob(
             String id,
             Point position,
             int actionPeriod,
@@ -62,7 +62,7 @@ public class EntityFactory {
                           actionPeriod, animationPeriod);
     }
 
-    public static Entity createQuake(
+    public static Quake createQuake(
             Point position, List<PImage> images)
     {
         int QUAKE_ANIMATION_PERIOD = 100;
@@ -70,7 +70,7 @@ public class EntityFactory {
                           QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
     }
 
-    public static Entity createVein(
+    public static Vein createVein(
             String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Vein(id, position, images,

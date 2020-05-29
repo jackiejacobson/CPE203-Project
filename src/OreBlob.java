@@ -123,7 +123,7 @@ public class OreBlob implements MoveToEntity{
 
             if (moveTo(world, blobTarget.get(), scheduler)) {
                 String QUAKE_KEY = "quake";
-                Quake quake = (Quake) EntityFactory.createQuake(tgtPos,
+                Quake quake = EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);

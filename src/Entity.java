@@ -6,7 +6,6 @@ public interface Entity
     public Point setPosition(Point pos);
     public Point getPosition();
 
-    public void nextImage();
     public List<PImage> getImages();
     public int getImageIndex();
     public PImage getCurrentImage();

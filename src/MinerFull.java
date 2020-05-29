@@ -90,7 +90,7 @@ public class MinerFull implements MoveToEntity{
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        MinerNotFull miner = (MinerNotFull) EntityFactory.createMinerNotFull(this.id, this.resourceLimit,
+        MinerNotFull miner = EntityFactory.createMinerNotFull(this.id, this.resourceLimit,
                 this.position, this.actionPeriod,
                 this.animationPeriod,
                 this.images);
@@ -118,7 +118,6 @@ public class MinerFull implements MoveToEntity{
 
 
     public void executeActivity(
-            //Entity entity,
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)

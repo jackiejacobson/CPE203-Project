@@ -70,7 +70,7 @@ public class Ore implements ActiveEntity{
         int BLOB_PERIOD_SCALE = 4;
         int BLOB_ANIMATION_MIN = 50;
         int BLOB_ANIMATION_MAX = 150;
-        OreBlob blob = (OreBlob) EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
+        OreBlob blob = EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
                 this.actionPeriod / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX

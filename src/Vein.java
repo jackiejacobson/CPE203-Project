@@ -64,7 +64,7 @@ public class Vein implements ActiveEntity {
             int ORE_CORRUPT_MAX = 30000;
             String ORE_ID_PREFIX = "ore -- ";
             String ORE_KEY = "ore";
-            Ore ore =  (Ore) EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
+            Ore ore =  EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
                     ORE_CORRUPT_MIN + rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(ORE_KEY));
