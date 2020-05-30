@@ -217,7 +217,7 @@
           <y:Geometry height="566.9999999999999" width="382.99999999999983" x="-333.95343823313044" y="57.66666666666674"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.7001953125" x="147.64990234374991" xml:space="preserve" y="252.8482055664062">VirtualWorld<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="87.7001953125" x="147.64990234374991" xml:space="preserve" y="3.0">VirtualWorld<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">+TIMER_ACTION_PERIOD: int         &lt;&lt;static&gt;&gt;
 +VIEW_WIDTH: int                          &lt;&lt;static&gt;&gt;
@@ -422,6 +422,7 @@
             <y:MethodLabel xml:space="preserve">+scheduleActions
 +getActionPeriod(): int
 +executeActivity  &lt;&lt;abstract&gt;&gt;
+#scheduleActionsHelper()
 
 
 
@@ -434,7 +435,7 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="103.71436446139217" width="179.2147842332829" x="1090.4616779100393" y="663.4749210956056"/>
+          <y:Geometry height="111.83896631673406" width="179.2147842332829" x="1090.4616779100393" y="663.4749210956056"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="italic" hasBackgroundColor="false" hasLineColor="false" height="19.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.7861328125" x="39.71432571039145" xml:space="preserve" y="3.0">AnimatedEntity
@@ -442,7 +443,8 @@
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-animationPeriod: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">+getAnimationPeriod(): int
-+nextImage()</y:MethodLabel>
++nextImage()
+#scheduleActionsHelper():</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -458,9 +460,10 @@
 <y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve"/>
-            <y:MethodLabel xml:space="preserve">+moveTo()  &lt;&lt;abstract&gt;&gt;
+            <y:MethodLabel xml:space="preserve">#moveToHelper():boolean  &lt;&lt;abstract&gt;&gt;
++moveTo(): boolean
 +nextPositionEntity(): Point &lt;&lt;abstract&gt;&gt;
-+scheduleActions():
+
 
 
 </y:MethodLabel>
@@ -472,21 +475,21 @@
       <data key="d4" xml:space="preserve"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="203.0125184308977" width="275.18531678992736" x="1478.7646560084181" y="437.1733543766667"/>
+          <y:Geometry height="203.0125184308977" width="341.92810527648476" x="1478.7646560084181" y="437.1733543766667"/>
           <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="2.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="91.775390625" x="91.70496308246368" xml:space="preserve" y="3.0">EntityFactory<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.310546875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="91.775390625" x="125.07635732574238" xml:space="preserve" y="3.0">EntityFactory<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="-0.03703090122767855" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
           <y:UML clipContent="true" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">-QUAKE_ID: String  &lt;&lt;static&gt;&gt;
 -QUAKE_ACTION_PERIOD: int    &lt;&lt;static&gt;&gt;</y:AttributeLabel>
-            <y:MethodLabel xml:space="preserve">+createBlackSmith(): Entity    &lt;&lt;static&gt;&gt;
-+createMinerFull(): Entity    &lt;&lt;static&gt;&gt;
-+createMinerNotFull(): Entity     &lt;&lt;static&gt;&gt;
-+createObstacle(): Entity    &lt;&lt;static&gt;&gt;
-+createOre(): Entity     &lt;&lt;static&gt;&gt;
-+createOreBlob(): Entity     &lt;&lt;static&gt;&gt;
-+createQuake(): Entity    &lt;&lt;static&gt;&gt;
-+createVein():Entity     &lt;&lt;static&gt;&gt;</y:MethodLabel>
+            <y:MethodLabel xml:space="preserve">+createBlackSmith(): BlackSmith    &lt;&lt;static&gt;&gt;
++createMinerFull(): MinerFull    &lt;&lt;static&gt;&gt;
++createMinerNotFull(): MinerNotFull     &lt;&lt;static&gt;&gt;
++createObstacle(): Obstacle    &lt;&lt;static&gt;&gt;
++createOre(): Ore     &lt;&lt;static&gt;&gt;
++createOreBlob(): OreBlob     &lt;&lt;static&gt;&gt;
++createQuake(): Quake    &lt;&lt;static&gt;&gt;
++createVein():Vein     &lt;&lt;static&gt;&gt;</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -597,7 +600,7 @@
             <y:AttributeLabel xml:space="preserve"/>
             <y:MethodLabel xml:space="preserve">+executeActivity()
 +nextPositionEntity(): Point
-+moveTo(): boolean
+#moveToHelper(): boolean
 </y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -614,7 +617,7 @@
           <y:UML clipContent="false" constraint="" hasDetailsColor="false" omitDetails="false" stereotype="" use3DEffect="false">
             <y:AttributeLabel xml:space="preserve">- resourceLimit: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">-transformFull():
-+moveTo():
+#moveToHelper():
 +nextPositionEntity(): Point
 +executeActivity()</y:MethodLabel>
           </y:UML>
@@ -633,7 +636,7 @@
             <y:AttributeLabel xml:space="preserve">-resourceLimit: int
 -resourceCount: int</y:AttributeLabel>
             <y:MethodLabel xml:space="preserve">-transformFull(): boolean
-+moveTo():
+#moveToHelper(): boolean
 +nextPositionEntity(): Point
 +executeActivity()</y:MethodLabel>
           </y:UML>
@@ -843,7 +846,7 @@
       <data key="d8" xml:space="preserve"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-21.793107587695204" sy="-43.675184862975" tx="0.0" ty="0.0"/>
+          <y:Path sx="-21.793107587695204" sy="-47.09653820986089" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
