@@ -22,11 +22,9 @@ public class MinerNotFull extends MoveToEntity {
         this.resourceCount = resourceCount;
 
     }
-
-    public boolean moveTo(
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
+    public boolean moveToHelper(WorldModel world,
+                                Entity target,
+                                EventScheduler scheduler)
     {
         if (this.getPosition().adjacent(target.getPosition())) {
             this.resourceCount += 1;
@@ -35,21 +33,10 @@ public class MinerNotFull extends MoveToEntity {
 
             return true;
         }
-        else {
-            Point nextPos = this.nextPositionEntity(world, target.getPosition());
-
-            if (!this.getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
+        else{
             return false;
         }
     }
-
 
 
     public Point nextPositionEntity(

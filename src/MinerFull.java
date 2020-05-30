@@ -19,29 +19,16 @@ public class MinerFull extends MoveToEntity{
         this.resourceLimit = resourceLimit;
     }
 
-
-    public boolean moveTo(
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
-    {
+    public boolean moveToHelper(WorldModel world,
+                                Entity target,
+                                EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition())) {
             return true;
-        }
-        else {
-            Point nextPos = nextPositionEntity(world, target.getPosition());
-
-            if (!this.getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
+        } else {
             return false;
         }
     }
+
 
     public Point nextPositionEntity(
             WorldModel world, Point destPos)

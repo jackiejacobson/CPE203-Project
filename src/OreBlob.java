@@ -15,28 +15,16 @@ public class OreBlob extends MoveToEntity{
     {
         super(id, position, images, actionPeriod, animationPeriod);
     }
-
-    public boolean moveTo(
-            WorldModel world,
-            Entity target,
-            EventScheduler scheduler)
+    public boolean moveToHelper(WorldModel world,
+                        Entity target,
+                        EventScheduler scheduler)
     {
         if (this.getPosition().adjacent(target.getPosition())) {
             world.removeEntity(target);
-            scheduler.unscheduleAllEvents( target);
+            scheduler.unscheduleAllEvents(target);
             return true;
         }
-        else {
-            Point nextPos = nextPositionEntity(world, target.getPosition());
-
-            if (!this.getPosition().equals(nextPos)) {
-                Optional<Entity> occupant = world.getOccupant(nextPos);
-                if (occupant.isPresent()) {
-                    scheduler.unscheduleAllEvents(occupant.get());
-                }
-
-                world.moveEntity(this, nextPos);
-            }
+        else{
             return false;
         }
     }
