@@ -15,7 +15,7 @@ public class OreBlob extends MoveToEntity{
     {
         super(id, position, images, actionPeriod, animationPeriod);
     }
-    public boolean moveToHelper(WorldModel world,
+    protected boolean moveToHelper(WorldModel world,
                         Entity target,
                         EventScheduler scheduler)
     {

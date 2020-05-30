@@ -37,21 +37,9 @@ public abstract class MoveToEntity extends AnimatedEntity {
             return false;
         }
     }
-    abstract boolean moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
+    protected abstract boolean moveToHelper(WorldModel world, Entity target, EventScheduler scheduler);
 
     abstract Point nextPositionEntity(WorldModel world, Point destPos);
 
-    public void scheduleActions(
-            //Entity entity,
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-        scheduler.scheduleEvent(this,
-                ActionFactory.createActivityAction(this, world, imageStore),
-                this.getActionPeriod());
-        scheduler.scheduleEvent(this,
-                ActionFactory.createAnimationAction(this, 0),
-                this.getAnimationPeriod());
-    }
+
 }

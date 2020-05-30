@@ -26,5 +26,18 @@ public class Quake extends AnimatedEntity {
         world.removeEntity(this);
     }
 
+    public void scheduleActions(
+            //Entity entity,
+            EventScheduler scheduler,
+            WorldModel world,
+            ImageStore imageStore)
+    {
+        scheduler.scheduleEvent(this,
+                ActionFactory.createActivityAction(this, world, imageStore),
+                this.getActionPeriod());
+        scheduler.scheduleEvent(this,
+                ActionFactory.createAnimationAction(this, 0),
+                this.getAnimationPeriod());
+    }
 
 }

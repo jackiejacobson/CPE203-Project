@@ -22,7 +22,7 @@ public class MinerNotFull extends MoveToEntity {
         this.resourceCount = resourceCount;
 
     }
-    public boolean moveToHelper(WorldModel world,
+    protected boolean moveToHelper(WorldModel world,
                                 Entity target,
                                 EventScheduler scheduler)
     {

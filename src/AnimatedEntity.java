@@ -20,4 +20,11 @@ public abstract class AnimatedEntity extends ActiveEntity {
         setImageIndex((getImageIndex() + 1) % getImages().size());
     }
 
+    protected void scheduleActionsHelper(EventScheduler scheduler)
+    {
+        scheduler.scheduleEvent(this,
+                ActionFactory.createAnimationAction(this, 0),
+                this.getAnimationPeriod());
+    }
+
 }

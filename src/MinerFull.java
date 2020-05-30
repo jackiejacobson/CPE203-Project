@@ -19,14 +19,10 @@ public class MinerFull extends MoveToEntity{
         this.resourceLimit = resourceLimit;
     }
 
-    public boolean moveToHelper(WorldModel world,
+     protected boolean moveToHelper(WorldModel world,
                                 Entity target,
                                 EventScheduler scheduler) {
-        if (this.getPosition().adjacent(target.getPosition())) {
-            return true;
-        } else {
-            return false;
-        }
+         return this.getPosition().adjacent(target.getPosition());
     }
 
 

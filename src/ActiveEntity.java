@@ -4,10 +4,6 @@ import java.util.List;
 
 public abstract class ActiveEntity extends Entity {
 
-   // private String id;
-  //  private Point position;
-   // private List<PImage> images;
-  //  private int imageIndex;
     private int actionPeriod;
 
     public ActiveEntity(
@@ -29,7 +25,10 @@ public abstract class ActiveEntity extends Entity {
         scheduler.scheduleEvent(this,
                 ActionFactory.createActivityAction(this, world, imageStore),
                 this.actionPeriod);
+        scheduleActionsHelper(scheduler);
     }
+
+    protected void scheduleActionsHelper(EventScheduler scheduler){}
 
 
 
