@@ -26,4 +26,5 @@ public class Quake extends AnimatedEntity {
         world.removeEntity(this);
     }
 
+
 }
