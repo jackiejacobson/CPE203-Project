@@ -3,15 +3,8 @@ import processing.core.PImage;
 import java.util.List;
 
 
-public class Quake implements AnimatedEntity {
+public class Quake extends AnimatedEntity {
 
-
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
-    private int animationPeriod;
 
     public Quake(
             String id,
@@ -20,13 +13,9 @@ public class Quake implements AnimatedEntity {
             int actionPeriod,
             int animationPeriod)
     {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
+        super(id, position, images, actionPeriod, animationPeriod);
     }
+    /*
     public Point getPosition(){
         return position;
     }
@@ -56,7 +45,7 @@ public class Quake implements AnimatedEntity {
                 QUAKE_ANIMATION_REPEAT_COUNT),
                         this.getAnimationPeriod());
     }
-
+    */
     public void executeActivity(
             //Entity entity,
             WorldModel world,
@@ -68,6 +57,7 @@ public class Quake implements AnimatedEntity {
     }
 
 
+    /*
 
     public int getAnimationPeriod() {
                 return animationPeriod;
@@ -81,4 +71,6 @@ public class Quake implements AnimatedEntity {
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
     }
+
+     */
 }

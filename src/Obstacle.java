@@ -3,25 +3,23 @@ import processing.core.PImage;
 import java.util.List;
 
 
-public class Obstacle implements Entity{
+public class Obstacle extends Entity {
 
-    private String id;
+    /*private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
 
+     */
+
     public Obstacle(
             String id,
             Point position,
-            List<PImage> images)
-    {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
+            List<PImage> images) {
+        super(id, position, images);
     }
 
-
+    /*
     public Point getPosition(){
         return position;
     }
@@ -43,7 +41,7 @@ public class Obstacle implements Entity{
         return getImages().get(getImageIndex());
     }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
+    //public void nextImage() {imageIndex = (imageIndex + 1) % images.size();}
+
+     */
 }

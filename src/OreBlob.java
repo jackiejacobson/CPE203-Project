@@ -3,14 +3,16 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OreBlob implements MoveToEntity{
-
+public class OreBlob extends MoveToEntity{
+    /*
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
     private int actionPeriod;
     private int animationPeriod;
+
+     */
 
     public OreBlob(
             String id,
@@ -19,13 +21,9 @@ public class OreBlob implements MoveToEntity{
             int actionPeriod,
             int animationPeriod)
     {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
+        super(id, position, images, actionPeriod, animationPeriod);
     }
+    /*
     public Point getPosition(){
         return position;
     }
@@ -39,6 +37,8 @@ public class OreBlob implements MoveToEntity{
     public int getImageIndex(){
         return imageIndex;
     }
+
+     */
 
 
     public boolean moveTo(
@@ -70,28 +70,29 @@ public class OreBlob implements MoveToEntity{
     public Point nextPositionEntity(
             WorldModel world, Point destPos)
     {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
+        int horiz = Integer.signum(destPos.x - getPosition().x);
+        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
         Optional<Entity> occupant = world.getOccupant(newPos);
 
         if (horiz == 0 || (occupant.isPresent() && !(occupant.get().getClass()
                 == Ore.class)))
         {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
+            int vert = Integer.signum(destPos.y - getPosition().y);
+            newPos = new Point(getPosition().x, getPosition().y + vert);
             occupant = world.getOccupant(newPos);
 
             if (vert == 0 || (occupant.isPresent() && !(occupant.get().getClass()
                     == Ore.class)))
             {
-                newPos = position;
+                newPos = getPosition();
             }
         }
 
         return newPos;
     }
 
+    /*
     public void scheduleActions(
             EventScheduler scheduler,
             WorldModel world,
@@ -99,12 +100,14 @@ public class OreBlob implements MoveToEntity{
     {
                 scheduler.scheduleEvent(this,
                         ActionFactory.createActivityAction(this, world, imageStore),
-                        this.actionPeriod);
+                        this.getActionPeriod);
                 scheduler.scheduleEvent(this,
                         ActionFactory.createAnimationAction(this, 0),
                         this.getAnimationPeriod());
 
     }
+
+     */
 
 
 
@@ -115,8 +118,8 @@ public class OreBlob implements MoveToEntity{
             EventScheduler scheduler)
     {
         Optional<Entity> blobTarget =
-                world.findNearest( this.position, Vein.class);
-        long nextPeriod = this.actionPeriod;
+                world.findNearest( this.getPosition(), Vein.class);
+        long nextPeriod = this.getActionPeriod();
 
         if (blobTarget.isPresent()) {
             Point tgtPos = blobTarget.get().getPosition();
@@ -127,7 +130,7 @@ public class OreBlob implements MoveToEntity{
                         imageStore.getImageList(QUAKE_KEY));
 
                 world.addEntity(quake);
-                nextPeriod += this.actionPeriod;
+                nextPeriod += this.getActionPeriod();
                 quake.scheduleActions(scheduler, world, imageStore);
             }
         }
@@ -137,6 +140,7 @@ public class OreBlob implements MoveToEntity{
                 nextPeriod);
     }
 
+    /*
 
     public int getAnimationPeriod() {
                 return animationPeriod;
@@ -149,4 +153,6 @@ public class OreBlob implements MoveToEntity{
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
     }
+
+     */
 }

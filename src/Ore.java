@@ -3,30 +3,27 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Random;
 
-public class Ore implements ActiveEntity{
+public class Ore extends ActiveEntity {
 
 
     private final Random rand = new Random();
-
+    /*
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
     private int actionPeriod;
 
+     */
+
     public Ore(
             String id,
             Point position,
             List<PImage> images,
-            int actionPeriod)
-
-    {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
+            int actionPeriod) {
+        super(id, position, images, actionPeriod);
     }
+    /*
     public Point getPosition(){
         return position;
     }
@@ -54,12 +51,13 @@ public class Ore implements ActiveEntity{
 
     }
 
+     */
+
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
-            EventScheduler scheduler)
-    {
-        Point pos = this.position;
+            EventScheduler scheduler) {
+        Point pos = getPosition();
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
@@ -70,8 +68,8 @@ public class Ore implements ActiveEntity{
         int BLOB_PERIOD_SCALE = 4;
         int BLOB_ANIMATION_MIN = 50;
         int BLOB_ANIMATION_MAX = 150;
-        OreBlob blob = EntityFactory.createOreBlob(this.id + BLOB_ID_SUFFIX, pos,
-                this.actionPeriod / BLOB_PERIOD_SCALE,
+        OreBlob blob = EntityFactory.createOreBlob(getId() + BLOB_ID_SUFFIX, pos,
+                getActionPeriod() / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN + rand.nextInt(
                         BLOB_ANIMATION_MAX
                                 - BLOB_ANIMATION_MIN),
@@ -80,8 +78,9 @@ public class Ore implements ActiveEntity{
         world.addEntity(blob);
         blob.scheduleActions(scheduler, world, imageStore);
     }
+}
 
-
+    /*
     public PImage getCurrentImage( ) {
         return getImages().get(getImageIndex());
     }
@@ -90,3 +89,5 @@ public class Ore implements ActiveEntity{
         imageIndex = (imageIndex + 1) % images.size();
     }
 }
+
+     */

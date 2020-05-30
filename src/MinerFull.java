@@ -3,15 +3,16 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class MinerFull implements MoveToEntity{
-
+public class MinerFull extends MoveToEntity{
+    /*
     private String id;
     private Point position;
     private List<PImage> images;
     private int imageIndex;
-    private int resourceLimit;
     private int actionPeriod;
     private int animationPeriod;
+     */
+    private int resourceLimit;
 
     public MinerFull(
             String id,
@@ -21,14 +22,10 @@ public class MinerFull implements MoveToEntity{
             int actionPeriod,
             int animationPeriod)
     {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
+        super(id, position, images, actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
-        this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
     }
+    /*
     public Point getPosition(){
         return position;
     }
@@ -43,19 +40,21 @@ public class MinerFull implements MoveToEntity{
         return imageIndex;
     }
 
+     */
+
 
     public boolean moveTo(
             WorldModel world,
             Entity target,
             EventScheduler scheduler)
     {
-        if (this.position.adjacent(target.getPosition())) {
+        if (this.getPosition().adjacent(target.getPosition())) {
             return true;
         }
         else {
             Point nextPos = nextPositionEntity(world, target.getPosition());
 
-            if (!this.position.equals(nextPos)) {
+            if (!this.getPosition().equals(nextPos)) {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent()) {
                     scheduler.unscheduleAllEvents(occupant.get());
@@ -70,15 +69,15 @@ public class MinerFull implements MoveToEntity{
     public Point nextPositionEntity(
             WorldModel world, Point destPos)
     {
-        int horiz = Integer.signum(destPos.x - position.x);
-        Point newPos = new Point(position.x + horiz, position.y);
+        int horiz = Integer.signum(destPos.x - getPosition().x);
+        Point newPos = new Point(getPosition().x + horiz, getPosition().y);
 
         if (horiz == 0 || world.isOccupied(newPos)) {
-            int vert = Integer.signum(destPos.y - position.y);
-            newPos = new Point(position.x, position.y + vert);
+            int vert = Integer.signum(destPos.y - getPosition().y);
+            newPos = new Point(getPosition().x, getPosition().y + vert);
 
             if (vert == 0 || world.isOccupied(newPos)) {
-                newPos = position;
+                newPos = getPosition();
             }
         }
 
@@ -90,10 +89,10 @@ public class MinerFull implements MoveToEntity{
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        MinerNotFull miner = EntityFactory.createMinerNotFull(this.id, this.resourceLimit,
-                this.position, this.actionPeriod,
-                this.animationPeriod,
-                this.images);
+        MinerNotFull miner = EntityFactory.createMinerNotFull(this.getId(), this.resourceLimit,
+                this.getPosition(), this.getActionPeriod(),
+                this.getAnimationPeriod(),
+                this.getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
@@ -102,6 +101,7 @@ public class MinerFull implements MoveToEntity{
         miner.scheduleActions(scheduler, world, imageStore);
     }
 
+    /*
     public void scheduleActions(
             //Entity entity,
             EventScheduler scheduler,
@@ -116,6 +116,8 @@ public class MinerFull implements MoveToEntity{
                         this.getAnimationPeriod());
     }
 
+     */
+
 
     public void executeActivity(
             WorldModel world,
@@ -123,7 +125,7 @@ public class MinerFull implements MoveToEntity{
             EventScheduler scheduler)
     {
         Optional<Entity> fullTarget =
-                world.findNearest(this.position, Blacksmith.class);
+                world.findNearest(this.getPosition(), Blacksmith.class);
 
         if (fullTarget.isPresent() && moveTo(world,
                 fullTarget.get(), scheduler))
@@ -133,9 +135,10 @@ public class MinerFull implements MoveToEntity{
         else {
             scheduler.scheduleEvent(this,
                     ActionFactory.createActivityAction(this, world, imageStore),
-                    this.actionPeriod);
+                    this.getActionPeriod());
         }
     }
+    /*
 
     public PImage getCurrentImage( ) {
         return getImages().get(getImageIndex());
@@ -146,4 +149,6 @@ public class MinerFull implements MoveToEntity{
     }
 
     public void nextImage() { imageIndex = (imageIndex + 1) % images.size();}
+
+     */
 }

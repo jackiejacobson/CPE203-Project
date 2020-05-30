@@ -4,15 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class Vein implements ActiveEntity {
+public class Vein extends ActiveEntity {
 
     private final Random rand = new Random();
 
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
 
     public Vein(
             String id,
@@ -20,12 +15,9 @@ public class Vein implements ActiveEntity {
             List<PImage> images,
             int actionPeriod)
     {
-        this.id = id;
-        this.position = position;
-        this.images = images;
-        this.imageIndex = 0;
-        this.actionPeriod = actionPeriod;
+        super(id, position, images, actionPeriod);
     }
+    /*
     public Point getPosition(){
         return position;
     }
@@ -51,20 +43,22 @@ public class Vein implements ActiveEntity {
                         this.actionPeriod);
     }
 
+     */
+
 
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Optional<Point> openPt = world.findOpenAround(this.position);
+        Optional<Point> openPt = world.findOpenAround(getPosition());
 
         if (openPt.isPresent()) {
             int ORE_CORRUPT_MIN = 20000;
             int ORE_CORRUPT_MAX = 30000;
             String ORE_ID_PREFIX = "ore -- ";
             String ORE_KEY = "ore";
-            Ore ore =  EntityFactory.createOre(ORE_ID_PREFIX + this.id, openPt.get(),
+            Ore ore =  EntityFactory.createOre(ORE_ID_PREFIX + getId(), openPt.get(),
                     ORE_CORRUPT_MIN + rand.nextInt(
                             ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(ORE_KEY));
@@ -74,15 +68,17 @@ public class Vein implements ActiveEntity {
 
         scheduler.scheduleEvent(this,
                 ActionFactory.createActivityAction(this, world, imageStore),
-                actionPeriod);
+                getActionPeriod());
     }
 
-
+    /*
     public PImage getCurrentImage( ) {
         return getImages().get(getImageIndex());
     }
 
     public void nextImage() {
         imageIndex = (imageIndex + 1) % images.size();
-    }
+
+     */
+
 }
