@@ -4,15 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OreBlob extends MoveToEntity{
-    /*
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
-    private int animationPeriod;
 
-     */
 
     public OreBlob(
             String id,
@@ -23,23 +15,6 @@ public class OreBlob extends MoveToEntity{
     {
         super(id, position, images, actionPeriod, animationPeriod);
     }
-    /*
-    public Point getPosition(){
-        return position;
-    }
-    public Point setPosition(Point point){
-        this.position = new Point(point.x, point.y);
-        return position;
-    }
-    public List<PImage> getImages(){
-        return images;
-    }
-    public int getImageIndex(){
-        return imageIndex;
-    }
-
-     */
-
 
     public boolean moveTo(
             WorldModel world,
@@ -92,24 +67,6 @@ public class OreBlob extends MoveToEntity{
         return newPos;
     }
 
-    /*
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createActivityAction(this, world, imageStore),
-                        this.getActionPeriod);
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createAnimationAction(this, 0),
-                        this.getAnimationPeriod());
-
-    }
-
-     */
-
-
 
     public void executeActivity(
             //Entity entity,
@@ -140,19 +97,4 @@ public class OreBlob extends MoveToEntity{
                 nextPeriod);
     }
 
-    /*
-
-    public int getAnimationPeriod() {
-                return animationPeriod;
-    }
-
-    public PImage getCurrentImage() {
-        return getImages().get(getImageIndex());
-    }
-
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
-
-     */
 }

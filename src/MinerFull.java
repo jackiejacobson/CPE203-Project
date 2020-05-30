@@ -4,14 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class MinerFull extends MoveToEntity{
-    /*
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
-    private int animationPeriod;
-     */
+
     private int resourceLimit;
 
     public MinerFull(
@@ -25,22 +18,6 @@ public class MinerFull extends MoveToEntity{
         super(id, position, images, actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
     }
-    /*
-    public Point getPosition(){
-        return position;
-    }
-    public Point setPosition(Point point){
-        this.position = new Point(point.x, point.y);
-        return position;
-    }
-    public List<PImage> getImages(){
-        return images;
-    }
-    public int getImageIndex(){
-        return imageIndex;
-    }
-
-     */
 
 
     public boolean moveTo(
@@ -101,24 +78,6 @@ public class MinerFull extends MoveToEntity{
         miner.scheduleActions(scheduler, world, imageStore);
     }
 
-    /*
-    public void scheduleActions(
-            //Entity entity,
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createActivityAction(this, world, imageStore),
-                        this.actionPeriod);
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createAnimationAction(this, 0),
-                        this.getAnimationPeriod());
-    }
-
-     */
-
-
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
@@ -138,17 +97,5 @@ public class MinerFull extends MoveToEntity{
                     this.getActionPeriod());
         }
     }
-    /*
 
-    public PImage getCurrentImage( ) {
-        return getImages().get(getImageIndex());
-    }
-
-    public int getAnimationPeriod() {
-                return animationPeriod;
-    }
-
-    public void nextImage() { imageIndex = (imageIndex + 1) % images.size();}
-
-     */
 }

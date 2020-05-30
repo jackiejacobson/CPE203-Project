@@ -7,14 +7,6 @@ public class Ore extends ActiveEntity {
 
 
     private final Random rand = new Random();
-    /*
-    private String id;
-    private Point position;
-    private List<PImage> images;
-    private int imageIndex;
-    private int actionPeriod;
-
-     */
 
     public Ore(
             String id,
@@ -23,35 +15,6 @@ public class Ore extends ActiveEntity {
             int actionPeriod) {
         super(id, position, images, actionPeriod);
     }
-    /*
-    public Point getPosition(){
-        return position;
-    }
-    public Point setPosition(Point point){
-        this.position = new Point(point.x, point.y);
-        return position;
-    }
-    public List<PImage> getImages(){
-        return images;
-    }
-    public int getImageIndex(){
-        return imageIndex;
-    }
-
-
-
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createActivityAction(this, world, imageStore),
-                        this.actionPeriod);
-
-    }
-
-     */
 
     public void executeActivity(
             WorldModel world,
@@ -79,15 +42,3 @@ public class Ore extends ActiveEntity {
         blob.scheduleActions(scheduler, world, imageStore);
     }
 }
-
-    /*
-    public PImage getCurrentImage( ) {
-        return getImages().get(getImageIndex());
-    }
-
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-    }
-}
-
-     */

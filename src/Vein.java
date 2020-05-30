@@ -17,34 +17,6 @@ public class Vein extends ActiveEntity {
     {
         super(id, position, images, actionPeriod);
     }
-    /*
-    public Point getPosition(){
-        return position;
-    }
-    public Point setPosition(Point point){
-        this.position = new Point(point.x, point.y);
-        return position;
-    }
-    public List<PImage> getImages(){
-        return images;
-    }
-    public int getImageIndex(){
-        return imageIndex;
-    }
-
-
-    public void scheduleActions(
-            EventScheduler scheduler,
-            WorldModel world,
-            ImageStore imageStore)
-    {
-                scheduler.scheduleEvent(this,
-                        ActionFactory.createActivityAction(this, world, imageStore),
-                        this.actionPeriod);
-    }
-
-     */
-
 
     public void executeActivity(
             WorldModel world,
@@ -71,14 +43,6 @@ public class Vein extends ActiveEntity {
                 getActionPeriod());
     }
 
-    /*
-    public PImage getCurrentImage( ) {
-        return getImages().get(getImageIndex());
-    }
 
-    public void nextImage() {
-        imageIndex = (imageIndex + 1) % images.size();
-
-     */
 
 }
