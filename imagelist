@@ -29,3 +29,15 @@ rocks images/rock.bmp
 dirt images/dirt.bmp
 vein images/vein.bmp
 background_default images/none.bmp
+robot images/robot1.bmp 255 255 255 0
+robot images/robot2.bmp 255 255 255 0
+robot images/robot3.bmp 255 255 255 0
+robot images/robot4.bmp 255 255 255 0
+robot images/robot5.bmp 255 255 255 0
+robot images/robot6.bmp 255 255 255 0
+planet images/planet-0.bmp 24 20 37 0
+planet images/planet-1.bmp 24 20 37 0
+planet images/planet-2.bmp 24 20 37 0
+planet images/planet-3.bmp 24 20 37 0
+planet images/planet-4.bmp 24 20 37 0
+planet images/planet-5.bmp 24 20 37 0
