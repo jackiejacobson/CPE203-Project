@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -76,9 +77,15 @@ public final class VirtualWorld extends PApplet
 
         view.drawViewport();
     }
+
     public void mousePressed() {
        Point pressed = mouseToPoint(mouseX, mouseY);
-
+       Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
+       if (oreBlob.isPresent()) {
+           Point oreBlobPosition = oreBlob.get().getPosition();
+           //if statement here
+           ((OreBlob)oreBlob.get()).transformRobot(world, scheduler, imageStore);
+       }
     }
 
     private Point mouseToPoint(int x, int y)

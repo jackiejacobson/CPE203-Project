@@ -76,4 +76,24 @@ public class EntityFactory {
         return new Vein(id, position, images,
                           actionPeriod);
     }
+
+    public static Robot createRobot(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Robot(id, position, images, actionPeriod, animationPeriod);
+    }
+
+    public static Astronaut createAstronaut(
+            String id,
+            Point position,
+            int actionPeriod,
+            int animationPeriod,
+            List<PImage> images)
+    {
+        return new Astronaut(id, position, images, actionPeriod, animationPeriod);
+    }
 }
