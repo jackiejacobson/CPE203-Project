@@ -91,7 +91,7 @@ public class OreBlob extends MoveToEntity{
             ImageStore imageStore)
     {
         Robot robot = EntityFactory.createRobot("robot", this.getPosition(),
-                this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
+                this.getActionPeriod(), this.getAnimationPeriod(), imageStore.getImageList(("robot")));
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
