@@ -58,7 +58,8 @@ public class Robot extends MoveToEntity{
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
-            EventScheduler scheduler) {
+            EventScheduler scheduler)
+    {
         Optional<Entity> robotTarget =
                 world.findNearest( this.getPosition(), Vein.class);
         long nextPeriod = this.getActionPeriod();
