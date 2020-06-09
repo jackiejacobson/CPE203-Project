@@ -53,7 +53,7 @@ public class Robot extends MoveToEntity{
         }
 
         return newPos;
-    }
+    } //change
 
     public void executeActivity(
             WorldModel world,
