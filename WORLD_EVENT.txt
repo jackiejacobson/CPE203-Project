@@ -1,0 +1,20 @@
+Project 4
+Jackie Jacobson
+Matt Sy
+CPE 203
+SPRING 2020
+
+
+1. The world changing event is triggered when a user clicks on the game. The click position is updated with the viewport so that the event shows up where the click occurs. 
+
+2. When triggered, the background where the user clicks changes to a planet surrounded by a space background with a radius of about 1 tile around the planet. 
+
+3. Any OreBlobs within x radius of the initial click will turn into robots and attempt to destroy all the blacksmiths resulting in an explosion when destroyed. 
+
+4. The new entity created is an astronaut who chases down the robots and keeps them from causing further damage to remaining BlackSmiths by destroying the robots
+
+5. Matt Sy: programmed changed entities and their functions
+Jackie Jacobson **: programmed change in background and new entity
+Both: came up with concept and converted gifs to bmp for new icons 
+
+** original base code based off of
