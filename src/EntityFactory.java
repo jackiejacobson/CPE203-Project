@@ -7,6 +7,10 @@ public class EntityFactory {
     private static final String QUAKE_ID = "quake";
     private static final int QUAKE_ACTION_PERIOD = 1100;
 
+    private static final String ROBOT_ID = "robot";
+    private static final int ROBOT_ACTION_PERIOD = 1000;
+    private static final int ROBOT_ANIMATION_PERIOD = 1100;
+
     private static final String ASTRONAUT_ID = "astronaut";
     private static final int ASTRONAUT_ACTION_PERIOD = 1000;
     private static final int ASTRONAUT_ANIMATION_PERIOD = 1100;
@@ -87,13 +91,10 @@ public class EntityFactory {
     }
 
     public static Robot createRobot(
-            String id,
             Point position,
-            int actionPeriod,
-            int animationPeriod,
             List<PImage> images)
     {
-        return new Robot(id, position, images, actionPeriod, animationPeriod);
+        return new Robot(ROBOT_ID, position, images, ROBOT_ACTION_PERIOD, ROBOT_ANIMATION_PERIOD);
     }
 
     public static Astronaut createAstronaut(

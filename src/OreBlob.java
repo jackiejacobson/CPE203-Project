@@ -90,8 +90,7 @@ public class OreBlob extends MoveToEntity{
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Robot robot = EntityFactory.createRobot("robot", this.getPosition(),
-                this.getActionPeriod(), this.getAnimationPeriod(), imageStore.getImageList(("robot")));
+        Robot robot = EntityFactory.createRobot(this.getPosition(), imageStore.getImageList(("robot")));
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
