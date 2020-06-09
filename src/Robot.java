@@ -81,5 +81,5 @@ public class Robot extends MoveToEntity{
         scheduler.scheduleEvent(this,
                 ActionFactory.createActivityAction(this, world, imageStore),
                 nextPeriod);
-    }
+    }//comment
 }
