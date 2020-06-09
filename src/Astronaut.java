@@ -58,6 +58,29 @@ public class Astronaut extends MoveToEntity{
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        //create action
+        //chases down robot
+        {
+            Optional<Entity> robotTarget =
+                    world.findNearest(this.getPosition(), Robot.class);
+            long nextPeriod = this.getActionPeriod();
+
+            if (robotTarget.isPresent()) {
+                Point tgtPos = robotTarget.get().getPosition();
+
+                if (moveTo(world, robotTarget.get(), scheduler)) {
+                    String EXPLOSION_KEY = "explosion";
+                    Explosion explosion = EntityFactory.createExplosion(tgtPos,
+                            imageStore.getImageList(EXPLOSION_KEY));
+
+                    world.addEntity(explosion);
+                    nextPeriod += this.getActionPeriod();
+                    explosion.scheduleActions(scheduler, world, imageStore);
+                }
+            }
+
+            scheduler.scheduleEvent(this,
+                    ActionFactory.createActivityAction(this, world, imageStore),
+                    nextPeriod);
+        }
     }
 }

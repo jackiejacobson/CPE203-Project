@@ -6,9 +6,14 @@ public class EntityFactory {
 
     private static final String QUAKE_ID = "quake";
     private static final int QUAKE_ACTION_PERIOD = 1100;
+
     private static final String ASTRONAUT_ID = "astronaut";
     private static final int ASTRONAUT_ACTION_PERIOD = 1000;
-    private static final int ASTRONAUT_ANIMATION_PERIOD = 1000;
+    private static final int ASTRONAUT_ANIMATION_PERIOD = 1100;
+
+    private static final String EXPLOSION_ID = "explosion";
+    private static final int EXPLOSION_ANIMATION_PERIOD = 50;
+    private static final int EXPLOSION_ACTION_PERIOD = 50;
 
 
     public static Blacksmith createBlacksmith(
@@ -96,5 +101,12 @@ public class EntityFactory {
             List<PImage> images)
     {
         return new Astronaut(ASTRONAUT_ID, position, images, ASTRONAUT_ACTION_PERIOD, ASTRONAUT_ANIMATION_PERIOD);
+    }
+    public static Explosion createExplosion(
+            Point position, List<PImage> images)
+    {
+
+        return new Explosion(EXPLOSION_ID, position, images,
+                EXPLOSION_ACTION_PERIOD, EXPLOSION_ANIMATION_PERIOD);
     }
 }
