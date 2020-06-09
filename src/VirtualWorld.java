@@ -81,7 +81,12 @@ public final class VirtualWorld extends PApplet
         Point pressed = mouseToPoint(mouseX, mouseY);
         //world.addWCE(pressed.x, pressed.y);
         world.createWCE(pressed, imageStore);
-        world.transformEntity(pressed, scheduler, imageStore);
+        Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
+        if (oreBlob.isPresent()) {
+            Point oreBlobPosition = oreBlob.get().getPosition();
+            //if statement here
+            ((OreBlob) oreBlob.get()).transformRobot(world, scheduler, imageStore);
+        }
     }
 
     private Point mouseToPoint(int x, int y)
