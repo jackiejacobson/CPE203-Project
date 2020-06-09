@@ -2,23 +2,23 @@ import processing.core.PImage;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
-public class OreBlob extends MoveToEntity{
+public class Robot extends MoveToEntity{
+    private final Random rand = new Random();
 
-
-    public OreBlob(
+    public Robot(
             String id,
             Point position,
             List<PImage> images,
             int actionPeriod,
-            int animationPeriod)
-    {
+            int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
 
     protected boolean moveToHelper(WorldModel world,
-                        Entity target,
-                        EventScheduler scheduler)
+                                   Entity target,
+                                   EventScheduler scheduler)
     {
         if (this.getPosition().adjacent(target.getPosition())) {
             world.removeEntity(target);
@@ -29,7 +29,6 @@ public class OreBlob extends MoveToEntity{
             return false;
         }
     }
-
 
     public Point nextPositionEntity(
             WorldModel world, Point destPos)
@@ -56,20 +55,18 @@ public class OreBlob extends MoveToEntity{
         return newPos;
     }
 
-
     public void executeActivity(
             WorldModel world,
             ImageStore imageStore,
-            EventScheduler scheduler)
-    {
-        Optional<Entity> blobTarget =
+            EventScheduler scheduler) {
+        Optional<Entity> robotTarget =
                 world.findNearest( this.getPosition(), Vein.class);
         long nextPeriod = this.getActionPeriod();
 
-        if (blobTarget.isPresent()) {
-            Point tgtPos = blobTarget.get().getPosition();
+        if (robotTarget.isPresent()) {
+            Point tgtPos = robotTarget.get().getPosition();
 
-            if (moveTo(world, blobTarget.get(), scheduler)) {
+            if (moveTo(world, robotTarget.get(), scheduler)) {
                 String QUAKE_KEY = "quake";
                 Quake quake = EntityFactory.createQuake(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
@@ -83,20 +80,5 @@ public class OreBlob extends MoveToEntity{
         scheduler.scheduleEvent(this,
                 ActionFactory.createActivityAction(this, world, imageStore),
                 nextPeriod);
-    }
-
-    public void transformRobot(
-            WorldModel world,
-            EventScheduler scheduler,
-            ImageStore imageStore)
-    {
-        Robot robot = EntityFactory.createRobot("robot", this.getPosition(),
-                this.getActionPeriod(), this.getAnimationPeriod(), this.getImages());
-
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
-
-        world.addEntity(robot);
-        robot.scheduleActions(scheduler, world, imageStore);
     }
 }

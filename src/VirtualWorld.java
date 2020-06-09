@@ -1,10 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import processing.core.*;
-
-import javax.swing.*;
 
 public final class VirtualWorld extends PApplet
 {
@@ -79,16 +78,20 @@ public final class VirtualWorld extends PApplet
         view.drawViewport();
     }
     public void mousePressed() {
-       Point p = mouseToPoint(mouseX, mouseY );
-       //world.addWCE(pressed.x, pressed.y);
+       Point pressed = mouseToPoint(mouseX, mouseY);
+        Point p = mouseToPoint(mouseX, mouseY );
+        //world.addWCE(pressed.x, pressed.y);
         world.createWCE(p, imageStore);
-
+        Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
+        if (oreBlob.isPresent()) {
+            Point oreBlobPosition = oreBlob.get().getPosition();
+            //if statement here
+            ((OreBlob)oreBlob.get()).transformRobot(world, scheduler, imageStore);
     }
 
     private Point mouseToPoint(int x, int y)
     {
-        return new Point((mouseX/TILE_WIDTH) + view.getViewPortCol()
-                , (mouseY /TILE_HEIGHT) +  view.getViewPortRow());
+        return new Point(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
     }
 
     public void keyPressed() {
