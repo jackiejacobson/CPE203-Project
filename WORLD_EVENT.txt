@@ -9,7 +9,7 @@ SPRING 2020
 
 2. When triggered, the background where the user clicks changes to a planet surrounded by a space background with a radius of about 1 tile around the planet. 
 
-3. Any OreBlobs within x radius of the initial click will turn into robots and attempt to destroy all the blacksmiths resulting in an explosion when destroyed. 
+3. Any OreBlobs within a radius of 4 from the initial click will turn into robots and attempt to destroy all the blacksmiths resulting in an explosion when destroyed.
 
 4. The new entity created is an astronaut who chases down the robots and keeps them from causing further damage to remaining BlackSmiths by destroying the robots
 
