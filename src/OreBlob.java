@@ -99,4 +99,5 @@ public class OreBlob extends MoveToEntity{
         world.addEntity(robot);
         robot.scheduleActions(scheduler, world, imageStore);
     }
+
 }

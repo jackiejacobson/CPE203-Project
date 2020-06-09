@@ -33,6 +33,7 @@ public final class WorldModel
     public Background[][] getBackground(){
         return background;
     }
+
     private Optional<Entity> nearestEntity(
             List<Entity> entities, Point pos)
     {
@@ -185,5 +186,25 @@ public final class WorldModel
         }
         setBackground(click, new Background("planet_background", imageStore.getImages().get("planet_background")));
 
+    }
+
+    public boolean withinRadius(Point click, int radius) {
+        int startX = click.x - radius;
+        int startY = click.y - radius;
+        int endX = click.x + radius;
+        int endY = click.y + radius;
+        return click.y >= 0 && startY < click.y && click.y < endY && click.x >= 0
+                && startX < click.x && click.x < endX;
+    }
+
+    public void transformEntity(Point click, EventScheduler scheduler, ImageStore imageStore) {
+        Optional<Entity> oreBlobPositions = findNearest(click, OreBlob.class);
+        Entity oreBlob = oreBlobPositions.get();
+        Point oreBlobPos = oreBlob.getPosition();
+        if (withinRadius(oreBlobPos, 2)) {
+            ((OreBlob)oreBlob).transformRobot(this, scheduler, imageStore);
+            //oreBlobPositions = findNearest(click, OreBlob.class);
+            //oreBlobPos = oreBlobPositions.get().getPosition();
+        }
     }
 }
