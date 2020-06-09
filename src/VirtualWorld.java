@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -8,6 +9,8 @@ import processing.core.*;
 public final class VirtualWorld extends PApplet
 {
     private static final int TIMER_ACTION_PERIOD = 100;
+
+    private final Random rand = new Random();
 
     private static final int VIEW_WIDTH = 640;
     private static final int VIEW_HEIGHT = 480;
@@ -77,12 +80,22 @@ public final class VirtualWorld extends PApplet
 
         view.drawViewport();
     }
-
     public void mousePressed() {
         Point pressed = mouseToPoint(mouseX, mouseY);
         //world.addWCE(pressed.x, pressed.y);
         world.createWCE(pressed, imageStore);
-        world.transformEntity(pressed, scheduler, imageStore);
+        //adds astronaut to world changed
+        Astronaut astronaut = EntityFactory.createAstronaut(pressed, imageStore.getImageList(("astronaut")));
+        world.addEntity(astronaut);
+        astronaut.scheduleActions(scheduler, world, imageStore);
+
+
+        Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
+        if (oreBlob.isPresent()) {
+            Point oreBlobPosition = oreBlob.get().getPosition();
+            //if statement here
+            ((OreBlob) oreBlob.get()).transformRobot(world, scheduler, imageStore);
+        }
     }
 
     private Point mouseToPoint(int x, int y)
