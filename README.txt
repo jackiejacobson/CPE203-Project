@@ -1,2 +1,2 @@
 Virtual World Project
-CSC 203, Summer '19
+CPE 203, Summer '19
