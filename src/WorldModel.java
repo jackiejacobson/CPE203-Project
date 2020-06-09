@@ -188,23 +188,32 @@ public final class WorldModel
 
     }
 
-    public boolean withinRadius(Point click, int radius) {
+    public boolean withinRadius(Point click, Point entityPos, int radius) {
         int startX = click.x - radius;
         int startY = click.y - radius;
         int endX = click.x + radius;
         int endY = click.y + radius;
-        return click.y >= 0 && startY < click.y && click.y < endY && click.x >= 0
-                && startX < click.x && click.x < endX;
+        return click.y >= 0 && entityPos.y >= 0 && startY < entityPos.y && entityPos.y < endY &&
+                click.x >= 0 && entityPos.x >= 0 &&startX < entityPos.x && entityPos.x < endX;
     }
 
     public void transformEntity(Point click, EventScheduler scheduler, ImageStore imageStore) {
+        int radius = 4;
+        int startX = click.x - radius;
+        int startY = click.y - radius;
+        int endX = click.x + radius;
+        int endY = click.y + radius;
         Optional<Entity> oreBlobPositions = findNearest(click, OreBlob.class);
-        Entity oreBlob = oreBlobPositions.get();
-        Point oreBlobPos = oreBlob.getPosition();
-        if (withinRadius(oreBlobPos, 4)) {
-            ((OreBlob)oreBlob).transformRobot(this, scheduler, imageStore);
-            //oreBlobPositions = findNearest(click, OreBlob.class);
-            //oreBlobPos = oreBlobPositions.get().getPosition();
+        for (int row = startX; row <= endX; row++) {
+            for (int col = startY; col <= endY; col++) {
+                Point p = new Point(row, col);
+                if (withinBounds(p) &&
+                        oreBlobPositions.isPresent() &&
+                        withinRadius(click, oreBlobPositions.get().getPosition(), radius)) {
+                    ((OreBlob)oreBlobPositions.get()).transformRobot(this, scheduler, imageStore);
+                    oreBlobPositions = findNearest(click, OreBlob.class);
+                }
+            }
         }
     }
 }

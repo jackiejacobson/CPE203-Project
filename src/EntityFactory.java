@@ -12,7 +12,7 @@ public class EntityFactory {
     private static final int ROBOT_ANIMATION_PERIOD = 1100;
 
     private static final String ASTRONAUT_ID = "astronaut";
-    private static final int ASTRONAUT_ACTION_PERIOD = 1000;
+    private static final int ASTRONAUT_ACTION_PERIOD = 2000;
     private static final int ASTRONAUT_ANIMATION_PERIOD = 1100;
 
     private static final String EXPLOSION_ID = "explosion";
