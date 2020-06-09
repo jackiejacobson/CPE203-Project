@@ -77,20 +77,22 @@ public final class VirtualWorld extends PApplet
 
         view.drawViewport();
     }
-
     public void mousePressed() {
-       Point pressed = mouseToPoint(mouseX, mouseY);
-       Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
-       if (oreBlob.isPresent()) {
-           Point oreBlobPosition = oreBlob.get().getPosition();
-           //if statement here
-           ((OreBlob)oreBlob.get()).transformRobot(world, scheduler, imageStore);
-       }
+        Point pressed = mouseToPoint(mouseX, mouseY);
+        //world.addWCE(pressed.x, pressed.y);
+        world.createWCE(pressed, imageStore);
+        Optional<Entity> oreBlob = world.findNearest(pressed, OreBlob.class);
+        if (oreBlob.isPresent()) {
+            Point oreBlobPosition = oreBlob.get().getPosition();
+            //if statement here
+            ((OreBlob) oreBlob.get()).transformRobot(world, scheduler, imageStore);
+        }
     }
 
     private Point mouseToPoint(int x, int y)
     {
-        return new Point(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
+        return new Point(mouseX/TILE_WIDTH + view.getViewPortCol() ,
+                mouseY/TILE_HEIGHT + view.getViewPortRow());
     }
 
     public void keyPressed() {

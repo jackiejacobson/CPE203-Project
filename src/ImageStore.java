@@ -7,7 +7,7 @@ import processing.core.PImage;
 
 public final class ImageStore
 {
-    private Map<String, List<PImage>> images;
+    public Map<String, List<PImage>> images;
     private List<PImage> defaultImages;
 
     public ImageStore(PImage defaultImage) {

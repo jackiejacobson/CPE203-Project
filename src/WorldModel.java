@@ -165,4 +165,25 @@ public final class WorldModel
             background.setBackgroundCell(this, pos, background);
         }
     }
+
+    //under construction
+
+    public void createWCE(Point click, ImageStore imageStore) {
+        int radius = 1;
+        int startX = click.x - radius;
+        int startY = click.y - radius;
+        int endX = click.x + radius;
+        int endY = click.y + radius;
+        for (int row = startX; row <= endX; row++) {
+            for (int col = startY; col <= endY; col++) {
+                Point p = new Point(row, col);
+                if (withinBounds(p)) {
+
+                    setBackground(p, new Background("space", imageStore.getImages().get("space")));
+                }
+            }
+        }
+        setBackground(click, new Background("planet_background", imageStore.getImages().get("planet_background")));
+
+    }
 }
