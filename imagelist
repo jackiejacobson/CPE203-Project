@@ -53,4 +53,5 @@ planet images/planet3.bmp 24 20 37 0
 planet images/planet4.bmp 24 20 37 0
 planet images/planet5.bmp 24 20 37 0
 planet images/planet6.bmp 24 20 37 0
-
+space images/space.bmp
+planet_background images/spacebackground.jpg

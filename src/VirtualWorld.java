@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import processing.core.*;
 
+import javax.swing.*;
+
 public final class VirtualWorld extends PApplet
 {
     private static final int TIMER_ACTION_PERIOD = 100;
@@ -77,13 +79,16 @@ public final class VirtualWorld extends PApplet
         view.drawViewport();
     }
     public void mousePressed() {
-       Point pressed = mouseToPoint(mouseX, mouseY);
+       Point p = mouseToPoint(mouseX, mouseY );
+       //world.addWCE(pressed.x, pressed.y);
+        world.createWCE(p, imageStore);
 
     }
 
     private Point mouseToPoint(int x, int y)
     {
-        return new Point(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT);
+        return new Point((mouseX/TILE_WIDTH) + view.getViewPortCol()
+                , (mouseY /TILE_HEIGHT) +  view.getViewPortRow());
     }
 
     public void keyPressed() {

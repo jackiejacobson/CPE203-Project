@@ -34,6 +34,8 @@ public final class WorldView
 
         viewport.shift(newCol, newRow);
     }
+    public int getViewPortRow(){return viewport.row;}
+    public int getViewPortCol(){return viewport.col;}
 
     private int clamp(int value, int low, int high) {
         return Math.min(high, Math.max(value, low));
