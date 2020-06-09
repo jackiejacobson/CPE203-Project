@@ -95,7 +95,6 @@ public class OreBlob extends MoveToEntity{
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
-
         world.addEntity(robot);
         robot.scheduleActions(scheduler, world, imageStore);
     }

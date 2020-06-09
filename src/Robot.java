@@ -60,21 +60,21 @@ public class Robot extends MoveToEntity{
             ImageStore imageStore,
             EventScheduler scheduler)
     {
-        Optional<Entity> robotTarget =
-                world.findNearest( this.getPosition(), Vein.class);
+        Optional<Entity> BSTarget =
+                world.findNearest( this.getPosition(), Blacksmith.class);
         long nextPeriod = this.getActionPeriod();
 
-        if (robotTarget.isPresent()) {
-            Point tgtPos = robotTarget.get().getPosition();
+        if (BSTarget.isPresent()) {
+            Point tgtPos = BSTarget.get().getPosition();
 
-            if (moveTo(world, robotTarget.get(), scheduler)) {
-                String QUAKE_KEY = "quake";
-                Quake quake = EntityFactory.createQuake(tgtPos,
+            if (moveTo(world, BSTarget.get(), scheduler)) {
+                String QUAKE_KEY = "explosion";
+                Explosion explosion = EntityFactory.createExplosion(tgtPos,
                         imageStore.getImageList(QUAKE_KEY));
 
-                world.addEntity(quake);
+                world.addEntity(explosion);
                 nextPeriod += this.getActionPeriod();
-                quake.scheduleActions(scheduler, world, imageStore);
+                explosion.scheduleActions(scheduler, world, imageStore);
             }
         }
 

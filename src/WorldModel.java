@@ -201,7 +201,7 @@ public final class WorldModel
         Optional<Entity> oreBlobPositions = findNearest(click, OreBlob.class);
         Entity oreBlob = oreBlobPositions.get();
         Point oreBlobPos = oreBlob.getPosition();
-        if (withinRadius(oreBlobPos, 2)) {
+        if (withinRadius(oreBlobPos, 4)) {
             ((OreBlob)oreBlob).transformRobot(this, scheduler, imageStore);
             //oreBlobPositions = findNearest(click, OreBlob.class);
             //oreBlobPos = oreBlobPositions.get().getPosition();
